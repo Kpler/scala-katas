@@ -1,7 +1,7 @@
-case class TicTacToe() {
-  def getAt(position: String): Option[Player] = Some(Circle)
+case class TicTacToe(grid: List[String]) {
+  def getAt(position: String): Option[Player] = Some(Cross)
 
-  def play(position: String): TicTacToe = this
+  def play(position: String): TicTacToe = copy(grid=position +: grid)
 }
 
 sealed trait Player
