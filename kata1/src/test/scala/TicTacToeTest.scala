@@ -4,12 +4,9 @@ import matchers._
 
 class TicTacToeTest extends AnyFlatSpec with should.Matchers {
 
-  "A List" should "drop the first values" in {
+  "Tictactoe" should "be able to insert at a1" in {
     val tictactoe = TicTacToe()
-
-    tictactoe.play("a1")
-
-//    stack.drop(1) should be (List(2))
+    val newTictactoe = tictactoe.play("a1")
+    newTictactoe.grid.getAt("a1") should be None
   }
-
 }
