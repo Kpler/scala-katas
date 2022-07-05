@@ -1,7 +1,7 @@
 case class TicTacToe(grid: List[String]) {
-  def getAt(position: String): Option[Player] = Some(Cross)
+  def getAt(position: String): Option[Player] = grid.find(e => e == position)
 
-  def play(position: String): TicTacToe = copy(grid=position +: grid)
+  def play(position: String): TicTacToe = copy(grid=position :: grid)
 }
 
 sealed trait Player
