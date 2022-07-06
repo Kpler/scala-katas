@@ -1,1 +1,4 @@
-case class TicTacToe()
+case class TicTacToe() {
+  def getGrid(): List[Nothing] = Nil
+
+}
