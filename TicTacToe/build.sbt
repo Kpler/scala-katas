@@ -14,7 +14,7 @@ lazy val root = (project in file("."))
       organization := "com.kpler",
       scalaVersion := appScalaVersion,
     )),
-    name := "kata1"
+    name := "TicTacToe"
   )
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.7" % Test
