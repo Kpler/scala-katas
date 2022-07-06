@@ -2,6 +2,9 @@ import org.scalatest._
 import flatspec._
 import matchers._
 
+import scala.util.Failure
+
+
 import scala.collection.immutable.Nil
 
 class TicTacToeTest extends AnyFlatSpec with should.Matchers {
@@ -23,28 +26,28 @@ class TicTacToeTest extends AnyFlatSpec with should.Matchers {
     val ticTacToe = TicTacToe()
 
     val res = ticTacToe.play("a1")
-    res.a1 should be (Some(Cross))
+    res.get.a1 should be (Some(Cross))
   }
 
   "TicTacToe" should "have Circle as 2nd player" in {
     val ticTacToe = TicTacToe()
 
-    val res = ticTacToe.play("a1").play("c1")
-    res.c1 should be (Some(Circle))
+    val res = ticTacToe.play("a1").get.play("c1")
+    res.get.c1 should be (Some(Circle))
   }
 
   "TicTacToe" should "be able to handle players properly" in {
     val ticTacToe = TicTacToe()
 
-    val res = ticTacToe.play("c1").play("a1")
-    res.c1 should be (Some(Cross))
-    res.a1 should be (Some(Circle))
+    val res = ticTacToe.play("c1").get.play("a1")
+    res.get.c1 should be (Some(Cross))
+    res.get.a1 should be (Some(Circle))
   }
 
   "TicTacToe" should "not authorise to play twice the same position in the same game" in {
     val ticTacToe = TicTacToe()
 
-    val res = ticTacToe.play("c1").play("c1")
-    res.c1 should be ()
+    val res = ticTacToe.play("c1").get.play("c1")
+    res should be (Failure(new NotAllowed()))
   }
 }

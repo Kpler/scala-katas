@@ -1,3 +1,5 @@
+import scala.util.{ Try, Success }
+
 sealed trait Player {
   def toggle: Player
 }
@@ -7,6 +9,8 @@ case object Cross extends Player {
 case object Circle extends Player {
   override def toggle: Player = Cross
 }
+
+class NotAllowed extends Exception
 
 case class TicTacToe(
   a1: Option[Player] = None,
@@ -20,19 +24,22 @@ case class TicTacToe(
   c3: Option[Player] = None,
   nextPlayer: Player = Cross,
 ) {
-  def play(position: String): TicTacToe = {
+  def play(position: String): Try[TicTacToe] = {
     val currentPlayer = this.nextPlayer
     val player = currentPlayer.toggle
-    position match {
+    val res = position match {
       case "a1" => this.copy(a1 = Some(currentPlayer), nextPlayer = player)
       case "a2" => this.copy(a2 = Some(currentPlayer), nextPlayer = player)
       case "a3" => this.copy(a3 = Some(currentPlayer), nextPlayer = player)
       case "b1" => this.copy(b1 = Some(currentPlayer), nextPlayer = player)
       case "b2" => this.copy(b2 = Some(currentPlayer), nextPlayer = player)
       case "b3" => this.copy(b3 = Some(currentPlayer), nextPlayer = player)
-      case "c1" => this.copy(c1 = Some(currentPlayer), nextPlayer = player)
+      case "c1" if c1 == None => this.copy(c1 = Some(currentPlayer), nextPlayer = player)
+      // case "c1" => Failure
       case "c2" => this.copy(c2 = Some(currentPlayer), nextPlayer = player)
       case "c3" => this.copy(c3 = Some(currentPlayer), nextPlayer = player)
+      case _ => Failure
     }
+    Success(res)
   }
 }
