@@ -16,5 +16,7 @@ case class TicTacToe(
   c2: Option[Player] = None,
   c3: Option[Player] = None
 ) {
-  def play(position: String): TicTacToe = this.copy(a1=Some(Cross))
+  def play(position: String): TicTacToe = position match {
+    case "a1" => this.copy(a1=Some(Cross))
+  }
 }

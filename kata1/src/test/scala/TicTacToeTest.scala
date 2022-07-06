@@ -25,4 +25,11 @@ class TicTacToeTest extends AnyFlatSpec with should.Matchers {
     val res = ticTacToe.play("a1")
     res.a1 should be (Some(Cross))
   }
+
+  "TicTacToe" should "have Circle as 2nd player" in {
+    val ticTacToe = TicTacToe()
+
+    val res = ticTacToe.play("a1").play("c1")
+    res.c1 should be (Some(Circle))
+  }
 }
