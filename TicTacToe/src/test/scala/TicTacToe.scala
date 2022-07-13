@@ -2,10 +2,13 @@ import org.scalatest._
 import flatspec._
 import matchers._
 
-class TicTacToe extends AnyFlatSpec with should.Matchers {
+class TestTicTacToe extends AnyFlatSpec with should.Matchers {
 
-  "A List" should "drop the first values" in {
-    val stack = List(3, 2)
-    stack.drop(1) should be (List(3))
+  "The app" should "asks for users input" in {
+    // Given
+    val newGame = new TicTacToe()
+
+    // When
+    Main.main()
   }
 }
