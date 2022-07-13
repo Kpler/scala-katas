@@ -1,6 +1,6 @@
 object Main {
-  def playerMove(matrix: Array[int], position: int, playerId: int): Array[int] = {
-    matrix.get(position) = playerId
+  def playerMove(matrix: Array[Int], position: Int, playerId: Int): Array[Int] = {
+    matrix(position) = playerId
     return matrix
   }
   def main(args: Array[String]): Unit = {

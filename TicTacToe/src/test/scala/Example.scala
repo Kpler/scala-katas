@@ -16,6 +16,16 @@ class Example extends AnyFlatSpec with should.Matchers {
     valid_matrix.length == 9
   }
 
-}
+  "Player id" should "be 1 or 2" in {
+    val valid_matrix = List.fill(9)(0)
+    val matrix_after_move = playerMove(valid_matrix, 3, 3)
+    matrix_after_move[3] == 1
+  }
 
-class
+//  "Player id" should "be 1 or 2" in {
+//    val valid_matrix = List.fill(9)(0)
+//    val matrix_after_move = playerMove(valid_matrix, 3, 3)
+//    matrix_after_move[3] == 1
+//  }
+
+}
