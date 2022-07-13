@@ -2,6 +2,8 @@ import org.scalatest._
 import flatspec._
 import matchers._
 
+import scala.List
+
 class TestTicTacToe extends AnyFlatSpec with should.Matchers {
 
   "The app" should " for users input" in {
@@ -10,7 +12,8 @@ class TestTicTacToe extends AnyFlatSpec with should.Matchers {
     
     // Then
     // check the grid is empty
-    newGame.grid should be List(List(), List(), List())
+
+    newGame.grid should be 3
   }
 
   "The app" should "asks for users input" in {
