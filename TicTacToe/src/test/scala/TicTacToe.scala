@@ -6,24 +6,22 @@ import scala.List
 
 class TestTicTacToe extends AnyFlatSpec with should.Matchers {
 
-  "The app" should " for users input" in {
+  "TicTacToe" should "have an empty grid on new game" in {
     // When
     val newGame = new TicTacToe()
     
     // Then
-    // check the grid is empty
+    // check the grid has all zero values
+    newGame.grid should be (Array(Array(0, 0, 0), Array(0, 0, 0), Array(0, 0, 0)))
 
-    newGame.grid should be (3);
-
-    // Then
-    // check the grid is empty
   }
 
-  "The app" should "asks for users input" in {
-    // Given
-    val newGame = new TicTacToe()
-
+  "TicTacToe" should "have 1 player only" in {
     // When
-     
+    val newGame = new TicTacToe()
+    
+    // Then
+
   }
+
 }

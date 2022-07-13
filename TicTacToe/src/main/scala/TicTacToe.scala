@@ -1,1 +1,3 @@
-class TicTacToe(var grid: Integer) {}
+class TicTacToe() {
+    var grid = Array.ofDim[Int](3, 3)
+}
