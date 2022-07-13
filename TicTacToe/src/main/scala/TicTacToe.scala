@@ -1,3 +1,1 @@
-class TicTacToe {
-  val grid = 3
-}
+class TicTacToe(var grid: Integer) {}

@@ -13,7 +13,10 @@ class TestTicTacToe extends AnyFlatSpec with should.Matchers {
     // Then
     // check the grid is empty
 
-    newGame.grid should be 3
+    newGame.grid should be (3);
+
+    // Then
+    // check the grid is empty
   }
 
   "The app" should "asks for users input" in {
