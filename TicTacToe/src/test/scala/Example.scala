@@ -13,19 +13,19 @@ class Example extends AnyFlatSpec with should.Matchers {
 
   "A List length" should "be of size 9" in {
     val valid_matrix = List.fill(9)(0)
-    valid_matrix.length == 9
+    assert(valid_matrix.length == 9)
   }
 
   "Player id" should "be 1 or 2" in {
     val valid_matrix = List.fill(9)(0)
     val matrix_after_move = playerMove(valid_matrix, 3, 3)
-    matrix_after_move[3] == 1
+    assert(matrix_after_move(3) != 1)
   }
 
-//  "Player id" should "be 1 or 2" in {
-//    val valid_matrix = List.fill(9)(0)
-//    val matrix_after_move = playerMove(valid_matrix, 3, 3)
-//    matrix_after_move[3] == 1
-//  }
+ "Player id" should "be 1 or 2" in {
+   val valid_matrix = List.fill(9)(0)
+   val matrix_after_move = playerMove(valid_matrix, 3, 3)
+   matrix_after_move[3] == 3
+  }
 
 }

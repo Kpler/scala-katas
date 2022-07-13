@@ -1,7 +1,6 @@
 object Main {
-  def playerMove(matrix: Array[Int], position: Int, playerId: Int): Array[Int] = {
-    matrix(position) = playerId
-    return matrix
+  def playerMove(matrix: List[Int], position: Int, playerId: Int): List[Int] = {
+    return matrix.updated(position, playerId)
   }
   def main(args: Array[String]): Unit = {
     println("Hello World!")
