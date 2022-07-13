@@ -1,6 +1,8 @@
 import org.scalatest._
 import flatspec._
 import matchers._
+import Main._
+
 
 class Example extends AnyFlatSpec with should.Matchers {
 
@@ -10,9 +12,10 @@ class Example extends AnyFlatSpec with should.Matchers {
   }
 
   "A List length" should "be of size 9" in {
-    val valid_matrix = List.fill(9)(False)
-    valid_matrix.length() should be 9
+    val valid_matrix = List.fill(9)(0)
+    valid_matrix.length == 9
   }
 
-
 }
+
+class
