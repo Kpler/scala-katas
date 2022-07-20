@@ -8,4 +8,8 @@ class Example extends AnyFlatSpec with should.Matchers {
     val stack = List(3, 2)
     stack.drop(1) should be (List(2))
   }
+
+  "A New game" should " return a new object" in {
+    val game: Game = new Game()
+  }
 }
