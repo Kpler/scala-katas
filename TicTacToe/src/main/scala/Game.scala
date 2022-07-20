@@ -24,7 +24,15 @@ case class Game(grid: Map[Case,Player] = Map[Case,Player](),
                 nextPlayer: Player = Circle) {
 
   def play(_case: Case): Game = {
-    Game(grid + (_case -> nextPlayer), nextPlayer.toggle)
+    if (grid.contains(_case)) this 
+    else Game(grid + (_case -> nextPlayer), nextPlayer.toggle)
   }
 
+  def winner: Option[Player] = {
+    if (
+      grid.get(A1) == Circle && grid.get(A2) == Circle && grid.get(A3) == Circle
+    )
+    Some(Circle)
+    else None
+  }
 }
