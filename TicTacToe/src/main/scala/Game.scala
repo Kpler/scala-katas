@@ -16,6 +16,10 @@ case object B3 extends Case
 case object C3 extends Case
 
 class Game {
-  val grid = Map[String,Player]()
+  val grid = Map[Case,Player]()
   
+  def play(_case: Case): Game = {
+    this
+  }
+
 }
