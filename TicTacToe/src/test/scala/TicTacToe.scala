@@ -28,9 +28,9 @@ class TicTacToeTest extends AnyFlatSpec with should.Matchers {
 
   "TicTacToe" should "allow to play" in {
     val ticTacToe = TicTacToe()
-    val newTicTacToe = ticTacToe.play(1, List(0, 0))
+    val newTicTacToe = ticTacToe.play(Cross, List(0, 0))
 
-    newTicTacToe.grid(0)(0) should be (1)
+    newTicTacToe.grid(0)(0) should be (Cross)
 
   }
 }

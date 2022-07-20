@@ -1,3 +1,8 @@
+sealed trait Player 
+
+case object Cross extends Player
+case object Circle extends Player
+
 case class TicTacToe(
    
   grid: List[List[Any]] = List(
@@ -7,16 +12,14 @@ case class TicTacToe(
    )
 ) {
    def play(
-      playerId: Int,
+      player: Player,
       coordinates: List[Int]
    )={
-
-      // fix test
-      return this.grid.updated(
+      val updatedGrid = this.grid.updated(
          coordinates(0),
-         this.grid(coordinates(1), playerId)      
+         this.grid(coordinates(0)).updated(coordinates(1), player)      
          )
-
+      TicTacToe(updatedGrid)
    }
 
 
