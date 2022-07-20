@@ -10,17 +10,23 @@ class Example extends AnyFlatSpec with should.Matchers {
   }
 
   "A New game" should " return a new object" in {
-    val game: Game = new Game()
+    val game: Game = Game()
   }
 
   "A New game" should "have grid field of type dict" in {
-    val game: Game = new Game()
+    val game: Game = Game()
     game.grid should be (Map[Case,Player]())
   }
 
   "A player" should "should play a valid case" in {
-    val game: Game = new Game()
+    val game: Game = Game()
     val game1 = game.play(A1)
     game1.grid should be (Map(A1 -> Circle))
+  }
+
+  "Player" should "should play 2 times" in {
+    val game: Game = Game()
+    val game1 = game.play(A1).play(A2)
+    game1.grid should be (Map(A1 -> Circle, A2 -> Cross))
   }
 }

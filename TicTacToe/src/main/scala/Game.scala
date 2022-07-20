@@ -1,4 +1,9 @@
-sealed trait Player
+sealed trait Player {
+  def toggle: Player = this match {
+    case Circle => Cross
+    case Cross => Circle
+  }
+}
 
 case object Circle extends Player
 case object Cross extends Player
@@ -15,11 +20,11 @@ case object A3 extends Case
 case object B3 extends Case
 case object C3 extends Case
 
-class Game {
-  val grid = Map[Case,Player]()
-  
+case class Game(grid: Map[Case,Player] = Map[Case,Player](),
+                nextPlayer: Player = Circle) {
+
   def play(_case: Case): Game = {
-    this
+    Game(grid + (_case -> nextPlayer), nextPlayer.toggle)
   }
 
 }
