@@ -3,30 +3,36 @@ import flatspec._
 import matchers._
 
 class GameSpec extends AnyFlatSpec with should.Matchers {
-
   "beginning of game" should "return score of 0 " in {
     val game = new Game()
-    val tested  = game.score()
-    tested should be(0)
+    val result  = game.score()
+    result should be(0)
   }
 
-  "a game with a pin 1 " should "return 10" in {
+  "game after one roll of 1" should "return a score of 1" in {
     val game = new Game()
     game.roll(1)
 
-    val tested = game.score()
-
+    val result = game.score()
+    result should be(1)
   }
 
+  "full game" should "have 10 turns?" in {}
 
+  // TODO: manage spares, manage strikes, then manage checks below:
+  // "one roll" should "should not be greater than 10" in {}
+  // "sum of rolls in one turn" should "should not be greater than 10" in {}
 }
 
+
 class Game {
-  def roll(pin : Int): Unit = {
-    ???
+  var currentScore: Int = 0
+
+  def roll(pins: Int): Unit = {
+    currentScore += pins
   }
 
-  def score() : Int = {
-    0
+  def score(): Int = {
+    currentScore
   }
 }
