@@ -6,11 +6,17 @@ class Game {
     if (pinsHit.length >= 20) {
       throw new IllegalArgumentException()
     }
-    currentScore += pins
     pinsHit = pinsHit :+ pins
   }
 
   def score(): Int = {
-    currentScore
+    var res = 0
+
+    for (i <- 0 until pinsHit.length) {
+      val even = i % 2 == 0
+      res += pinsHit(i)
+    }
+
+    res
   }
 }

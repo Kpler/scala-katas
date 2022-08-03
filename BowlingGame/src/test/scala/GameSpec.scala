@@ -2,8 +2,6 @@ import org.scalatest._
 import flatspec._
 import matchers._
 
-import org.company.module
-
 class GameSpec extends AnyFlatSpec with should.Matchers {
   "beginning of game" should "return score of 0 " in {
     val game = new Game()
@@ -20,7 +18,7 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
   }
 
   "full game" should "have 10 frames" in {
-    val game = new Game();
+    val game = new Game()
     for (i <- 0 until 20) {
       game.roll(1);
     }
@@ -29,13 +27,22 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
   }
 
   "full game" should "not have more than 10 frames" in {
-    val game = new Game();
+    val game = new Game()
     for (i <- 0 until 20) {
       game.roll(1);
     }
     assertThrows[IllegalArgumentException] {
       game.roll(1)
     }
+  }
+
+  "a spare" should "compute the score properly" in {
+    val game = new Game()
+    game.roll(7)
+    game.roll(3)
+    game.roll(4)
+
+    game.score() should be (18)
   }
 
   // TODO: manage spares, manage strikes, then manage checks below:
