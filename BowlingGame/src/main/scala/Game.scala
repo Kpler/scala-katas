@@ -11,29 +11,28 @@ class Game {
     }
   }
 
+  def score(): Int = rolls
+    .zipWithIndex
+    .foldLeft(0) { (acc, item) =>
+      val (pins, index) = item
+      (isStrike(index), isSpare(index)) match {
+        case (true, _) | (_, true) => (pins * 2) + acc
+        case (_, _) => pins + acc
+      }
+    }
+
+  private def isSpare(index: Int) = {
+    val even = index % 2 == 0
+    even && index > 0 && rolls(index - 1) + rolls(index - 2) == 10
+  }
+
   private def isStrike(index: Int): Boolean = {
     if (index <= 2) {
       return false
     }
-
     val even = index % 2 == 0
-    val shouldFirstRollBeDoubled = even && rolls(index-2) == 10
-    val shouldSecondRollBeDoubled = rolls(index-3) == 10
+    val shouldFirstRollBeDoubled = even && rolls(index - 2) == 10
+    val shouldSecondRollBeDoubled = rolls(index - 3) == 10
     shouldFirstRollBeDoubled || shouldSecondRollBeDoubled
-  }
-
-  def score(): Int = {
-    var res = 0
-    for (i <- rolls.indices) {
-      res += rolls(i)
-      val even = i % 2 == 0
-      if (isStrike(i)) {
-        res += rolls(i)
-      }
-      if (even && i > 0 && rolls(i-1) + rolls(i-2) == 10) {
-        res += rolls(i)
-      }
-    }
-    res
   }
 }
