@@ -45,7 +45,25 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
     game.score() should be (18)
   }
 
-  // TODO: manage spares, manage strikes, then manage checks below:
-  // "one roll" should "should not be greater than 10" in {}
-  // "sum of rolls in one turn" should "should not be greater than 10" in {}
+  "a game" should "compute the double the next roll after a spare" in {
+    val game = new Game()
+    game.roll(7)
+    game.roll(3)
+    game.roll(7)
+    game.roll(1)
+
+    game.score() should be (25)
+  }
+
+  "a game" should "compute a strike" in {
+    val game = new Game()
+    game.roll(7)
+    game.roll(3)
+
+    game.score() should be (25)
+  }
+
+
+
+
 }
