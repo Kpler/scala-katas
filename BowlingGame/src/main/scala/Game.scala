@@ -6,6 +6,9 @@ class Game {
       throw new IllegalArgumentException()
     }
     rolls = rolls :+ pins
+    if (pins == 10 && rolls.length % 2 == 1) {
+      rolls = rolls :+ 0
+    }
   }
 
   def score(): Int = {
@@ -13,6 +16,9 @@ class Game {
     for (i <- rolls.indices) {
       res += rolls(i)
       val even = i % 2 == 0
+      if (rolls(i-3) == 10) {
+        res += rol
+      }
       if (even && i > 0 && rolls(i-1) + rolls(i-2) == 10) {
         res += rolls(i)
       }
