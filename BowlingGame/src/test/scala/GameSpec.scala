@@ -64,6 +64,16 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
     game.score() should be (24)
   }
 
+  "a game" should "compute a 0-10 spare" in {
+    val game = new Game()
+    game.roll(0)
+    game.roll(10)
+    game.roll(3)
+    game.roll(4)
+
+    game.score() should be (20)
+  }
+
 
 
 

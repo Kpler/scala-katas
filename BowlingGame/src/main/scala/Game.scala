@@ -16,8 +16,8 @@ class Game {
     for (i <- rolls.indices) {
       res += rolls(i)
       val even = i % 2 == 0
-      if (rolls(i-3) == 10) {
-        res += rol
+      if (i > 2 && !even && (rolls(i-3) == 10 || rolls(i-2) == 10)) { // strike
+        res += rolls(i)
       }
       if (even && i > 0 && rolls(i-1) + rolls(i-2) == 10) {
         res += rolls(i)
