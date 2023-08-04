@@ -43,24 +43,3 @@ class BowlingGameSpec extends AnyFlatSpec with should.Matchers {
     score should be (33)
   }
 }
-
-class BowlingGame() {
-  var rolledPins = List[Int]()
-  def score() : Int = {
-    var totalScore = 0
-
-    rolledPins.zipWithIndex.foreach((zippedPins) => {
-      val (currPins, idx) = zippedPins
-      if (idx % 2 == 0 && idx > 0 && (rolledPins(idx - 2) + rolledPins(idx - 1) == 10)) {
-        totalScore += currPins
-      }
-      totalScore += currPins
-    })
-    totalScore
-  }
-
-  def roll(pins: Int) : Unit = {
-    this.rolledPins = this.rolledPins :+ pins
-  }
-
-}
