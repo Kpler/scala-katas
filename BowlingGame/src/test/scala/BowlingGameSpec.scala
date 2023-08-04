@@ -30,13 +30,13 @@ class BowlingGameSpec extends AnyFlatSpec with should.Matchers {
 }
 
 class BowlingGame() {
-  val pins = List<int>()
+  var pinsList = List[Int]()
   def score() : Int = {
     0
   }
 
   def roll(pins: Int) : Unit = {
-    pins.add(pins)
+    this.pinsList = this.pinsList :+ pins
   }
 
 }
