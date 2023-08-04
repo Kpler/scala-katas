@@ -49,12 +49,28 @@ class BowlingGameSpec extends AnyFlatSpec with should.Matchers {
     game.roll(10) // 10
     game.roll(5) // 1
     game.roll(3) // 2
-    for (i <- 1 to 16) {
+    for (i <- 1 to 16) { // TODO
       game.roll(1)
     }
     // When
     val score = game.score()
     // Then
     score should be (42)
+  }
+
+  "In a game with 1 spare at the very end" should "return a score of 31" in {
+    // Given
+    val game = new BowlingGame()
+
+    for (i <- 1 to 18) { // TODO
+      game.roll(1)
+    }
+    game.roll(7) // 7
+    game.roll(3) // 3
+    game.roll(3) // 3
+    // When
+    val score = game.score()
+    // Then
+    score should be (31)
   }
 }

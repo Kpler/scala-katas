@@ -17,15 +17,21 @@ class BowlingGame() {
       } else if (isSpare(idx) && rolledPins(idx - 2) != 10) { // excluding idx-2 because this is a strike case
         totalScore += currPins
       }
+      
       totalScore += currPins
     })
     totalScore
   }
 
   def roll(pins: Int): Unit = {
-    this.rolledPins = this.rolledPins :+ pins
-    if (pins == 10) {
-      this.rolledPins = this.rolledPins :+ 0
+    if (this.rolledPins.length < 22) {
+        this.rolledPins = this.rolledPins :+ pins
+        if (pins == 10) {
+        this.rolledPins = this.rolledPins :+ 0
+        }
+    } else {
+        // execute end score
+        score()
     }
   }
 
