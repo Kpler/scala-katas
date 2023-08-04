@@ -31,9 +31,9 @@ class BowlingGameSpec extends AnyFlatSpec with should.Matchers {
   "In a game with 1 spare" should "return a score of 33" in {
     // Given
     val game = new BowlingGame()
-    game.roll(5)
-    game.roll(5)
-    game.roll(3)
+    game.roll(5) // 0
+    game.roll(5) // 1
+    game.roll(3) // 2
     for (i <- 1 to 17) {
       game.roll(1)
     }
@@ -47,8 +47,16 @@ class BowlingGameSpec extends AnyFlatSpec with should.Matchers {
 class BowlingGame() {
   var rolledPins = List[Int]()
   def score() : Int = {
+    var totalScore = 0
 
-    rolledPins.sum
+    rolledPins.zipWithIndex.foreach((zippedPins) => {
+      val (currPins, idx) = zippedPins
+      if (idx % 2 == 0 && idx > 0 && (rolledPins(idx - 2) + rolledPins(idx - 1) == 10)) {
+        totalScore += currPins
+      }
+      totalScore += currPins
+    })
+    totalScore
   }
 
   def roll(pins: Int) : Unit = {
