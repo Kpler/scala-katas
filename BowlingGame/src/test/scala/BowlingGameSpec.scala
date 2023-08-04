@@ -15,13 +15,28 @@ class BowlingGameSpec extends AnyFlatSpec with should.Matchers {
     // Then
     score should be (0)
   }
+
+  "A normal game" should "return a score of 20" in {
+    // Given
+    val game = new BowlingGame()
+    for (i <- 1 to 20) {
+      game.roll(1)
+    }
+    // When
+    val score = game.score()
+    // Then
+    score should be (20)
+  }
 }
 
-case class BowlingGame() {
+class BowlingGame() {
+  val pins = List<int>()
   def score() : Int = {
     0
   }
 
-  def roll(pins: Int) : Unit = ???
+  def roll(pins: Int) : Unit = {
+    pins.add(pins)
+  }
 
 }
