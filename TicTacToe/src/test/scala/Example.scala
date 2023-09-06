@@ -6,7 +6,7 @@ class Example extends AnyFlatSpec with should.Matchers {
 
   "At the start of a game, the score" should "be love-love" in {
     // Given
-    val game = TennisGame()
+    val game = new TennisGame()
     // When
     val result = game.getScore()
     // Then
@@ -14,6 +14,13 @@ class Example extends AnyFlatSpec with should.Matchers {
   }
 
   "When player 1 score the first point, it" should "return a score of 15-0" in {
+    // Given
+    val game = new TennisGame()
+    // When
+    val gameWithFirstPoint = game.scoresPlayer1()
+    val result = gameWithFirstPoint.getScore()
+    // Then
+    result should be("15-love")
 
   }
 
@@ -22,7 +29,9 @@ class Example extends AnyFlatSpec with should.Matchers {
   }
 }
 
-case class TennisGame() {
-  def getScore() : String = ???
+class TennisGame() {
+  def getScore() : String = "love-love"
+
+  def scoresPlayer1() : TennisGame = ???
 
 }
