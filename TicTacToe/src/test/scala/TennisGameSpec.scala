@@ -2,13 +2,13 @@ import org.scalatest._
 import flatspec._
 import matchers._
 
-class TennisGame extends AnyFlatSpec with should.Matchers {
+class TennisGameTest extends AnyFlatSpec with should.Matchers {
 
   "At the start of a game, the score" should "be love-love" in {
     // Given
     val game = new TennisGame()
     // When
-    val result = game.getScore()
+    val result = game.score
     // Then
     result should be ("love-love")
   }
@@ -18,14 +18,20 @@ class TennisGame extends AnyFlatSpec with should.Matchers {
     val game = new TennisGame()
     // When
     val gameWithFirstPoint = game.addOnePointToPlayer1()
-    val result = gameWithFirstPoint.getScore()
+    val result = gameWithFirstPoint.score
     // Then
     result should be("15-love")
 
   }
 
   "When player 2 score the first point, it" should "return a score of love-15" in {
-
+    // Given
+    val game = new TennisGame()
+    // When
+    val gameWithFirstPoint = game.addOnePointToPlayer2()
+    val result = gameWithFirstPoint.score
+    // Then
+    result should be("love-15")
   }
 }
 
