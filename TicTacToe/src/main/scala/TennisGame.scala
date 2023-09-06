@@ -1,11 +1,12 @@
 case class TennisGame(
                        player1: Player = Player("love"),
-                       player2: Player = Player("love"),
-                       score: String = "love-love") {
+                       player2: Player = Player("love")) {
 
-  def addOnePointToPlayer1(): TennisGame = TennisGame("15-love")
+  def getScore() = s"${player1.score}-${player2.score}"
 
-  def addOnePointToPlayer2(): TennisGame = TennisGame("love-15")
+  def addOnePointToPlayer1(): TennisGame = TennisGame(Player("15"), player2)
+
+  def addOnePointToPlayer2(): TennisGame = TennisGame(player1, Player("15"))
 
 }
 

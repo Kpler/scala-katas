@@ -8,7 +8,7 @@ class TennisGameTest extends AnyFlatSpec with should.Matchers {
     // Given
     val game = new TennisGame()
     // When
-    val result = game.score
+    val result = game.getScore()
     // Then
     result should be ("love-love")
   }
@@ -18,7 +18,7 @@ class TennisGameTest extends AnyFlatSpec with should.Matchers {
     val game = new TennisGame()
     // When
     val gameWithFirstPoint = game.addOnePointToPlayer1()
-    val result = gameWithFirstPoint.score
+    val result = gameWithFirstPoint.getScore()
     // Then
     result should be("15-love")
 
@@ -29,7 +29,7 @@ class TennisGameTest extends AnyFlatSpec with should.Matchers {
     val game = new TennisGame()
     // When
     val gameWithFirstPoint = game.addOnePointToPlayer2()
-    val result = gameWithFirstPoint.score
+    val result = gameWithFirstPoint.getScore()
     // Then
     result should be("love-15")
   }
