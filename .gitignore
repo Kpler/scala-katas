@@ -194,3 +194,5 @@ data-dump/dist
 .flooignore
 
 kpler-github-actions/
+/TicTacToe/project/metals.sbt
+/TicTacToe/project/project

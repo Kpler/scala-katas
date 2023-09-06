@@ -33,5 +33,16 @@ class TennisGameTest extends AnyFlatSpec with should.Matchers {
     // Then
     result should be("love-15")
   }
+
+  "When player 1 already scored and player 2 scores, it" should "return 15-15" in {
+    // Given
+    val game = new TennisGame()
+    // When
+    val gameWithFirstPoint = game.addOnePointToPlayer1()
+    val gameWithTwoPoints = gameWithFirstPoint.addOnePointToPlayer2()
+    val result = gameWithTwoPoints.getScore()
+    // Then
+    result should be("15-15")
+  }
 }
 
