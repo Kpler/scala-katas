@@ -2,7 +2,7 @@ import org.scalatest._
 import flatspec._
 import matchers._
 
-class Example extends AnyFlatSpec with should.Matchers {
+class TennisGame extends AnyFlatSpec with should.Matchers {
 
   "At the start of a game, the score" should "be love-love" in {
     // Given
@@ -29,10 +29,3 @@ class Example extends AnyFlatSpec with should.Matchers {
   }
 }
 
-case class TennisGame(score: String = "love-love") {
-  def getScore() : String = score
-
-  def addOnePointToPlayer1() : TennisGame = new TennisGame("15-love")
-
-
-}
