@@ -2,7 +2,7 @@ import org.scalatest._
 import flatspec._
 import matchers._
 
-class TennisGameTest extends AnyFlatSpec with should.Matchers {
+class TennisGameSpec extends AnyFlatSpec with should.Matchers {
 
   "At the start of a game, the score" should "be love-love" in {
     // Given
