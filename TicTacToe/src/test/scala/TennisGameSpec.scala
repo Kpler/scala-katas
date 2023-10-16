@@ -74,5 +74,15 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     // Then
     gameWithFourPoints.getScore should be("win-love")
   }
+
+  "When both players reach 40 points, it" should "return deuce" in {
+    // Given
+    val game = TennisGame()
+    // When
+    val gameWithThreePointsPlayerOne = game.addOnePointToPlayer1().addOnePointToPlayer1().addOnePointToPlayer1()
+    val gameWithThreePointsForBoth = gameWithThreePointsPlayerOne.addOnePointToPlayer2().addOnePointToPlayer2().addOnePointToPlayer2()
+    // Then
+    gameWithThreePointsForBoth.getScore should be("deuce")
+  }
 }
 
