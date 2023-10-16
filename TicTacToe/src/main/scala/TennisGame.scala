@@ -2,11 +2,11 @@ case class TennisGame(
                        player1: Player = Player("love"),
                        player2: Player = Player("love")) {
 
-  val getScore ={
-    s"${player1.score}-${player2.score}" match {
-      case "40-40"=> "deuce"
-      case "win-40"=> "win"
-      case other => other
+  val getScore = {
+    (player1, player2) match {
+      case (Player("40"), Player("40"))=> "deuce"
+      case (Player("win"), Player("40")) | (Player("40"), Player("win")) => "win"
+      case _ => s"${player1.score}-${player2.score}"
     }
   }
 
