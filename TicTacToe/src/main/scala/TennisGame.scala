@@ -2,7 +2,12 @@ case class TennisGame(
                        player1: Player = Player("love"),
                        player2: Player = Player("love")) {
 
-  val getScore = s"${player1.score}-${player2.score}"
+  val getScore ={
+    s"${player1.score}-${player2.score}" match {
+      case "40-40"=> "deuce"
+      case other => other
+    }
+  }
 
   def addOnePointToPlayer1(): TennisGame = TennisGame(player1.addPoint(), player2)
 
