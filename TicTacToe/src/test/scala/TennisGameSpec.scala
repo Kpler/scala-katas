@@ -46,8 +46,7 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     // Given
     val game = TennisGame()
     // When
-    val gameWithFirstPoint = game.addOnePointToPlayer1()
-    val gameWithTwoPoints = gameWithFirstPoint.addOnePointToPlayer1()
+    val gameWithTwoPoints = game.addOnePointToPlayer1().addOnePointToPlayer1()
     // Then
     gameWithTwoPoints.getScore should be("30-love")
   }
@@ -56,9 +55,7 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     // Given
     val game = TennisGame()
     // When
-    val gameWithFirstPoint = game.addOnePointToPlayer1()
-    val gameWithTwoPoints = gameWithFirstPoint.addOnePointToPlayer1()
-    val gameWithThreePoints = gameWithTwoPoints.addOnePointToPlayer1()
+    val gameWithThreePoints = game.addOnePointToPlayer1().addOnePointToPlayer1().addOnePointToPlayer1()
     // Then
      gameWithThreePoints.getScore should be("40-love")
   }
@@ -67,10 +64,7 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     // Given
     val game = TennisGame()
     // When
-    val gameWithFirstPoint = game.addOnePointToPlayer1()
-    val gameWithTwoPoints = gameWithFirstPoint.addOnePointToPlayer1()
-    val gameWithThreePoints = gameWithTwoPoints.addOnePointToPlayer1()
-    val gameWithFourPoints = gameWithThreePoints.addOnePointToPlayer1()
+    val gameWithFourPoints = game.addOnePointToPlayer1().addOnePointToPlayer1().addOnePointToPlayer1().addOnePointToPlayer1()
     // Then
     gameWithFourPoints.getScore should be("win-love")
   }
@@ -83,6 +77,17 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     val gameWithThreePointsForBoth: TennisGame = gameWithThreePointsPlayerOne.addOnePointToPlayer2().addOnePointToPlayer2().addOnePointToPlayer2()
     // Then
     gameWithThreePointsForBoth.getScore should be("deuce")
+  }
+
+  "When both players reach 40 points and Player 1 score, it" should "return win" in {
+    // Given
+    val game = TennisGame()
+    // When
+    val gameWithThreePointsPlayerOne: TennisGame = game.addOnePointToPlayer1().addOnePointToPlayer1().addOnePointToPlayer1()
+    val gameWithThreePointsForBoth: TennisGame = gameWithThreePointsPlayerOne.addOnePointToPlayer2().addOnePointToPlayer2().addOnePointToPlayer2()
+    val gameWin = gameWithThreePointsForBoth.addOnePointToPlayer1()
+    // Then
+    gameWin.getScore should be("win")
   }
 }
 

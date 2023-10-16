@@ -5,6 +5,7 @@ case class TennisGame(
   val getScore ={
     s"${player1.score}-${player2.score}" match {
       case "40-40"=> "deuce"
+      case "win-40"=> "win"
       case other => other
     }
   }
