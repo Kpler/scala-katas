@@ -2,7 +2,7 @@ case class TennisGame(
                        player1: Player = Player("love"),
                        player2: Player = Player("love")) {
 
-  def getScore() = s"${player1.score}-${player2.score}"
+  val getScore = s"${player1.score}-${player2.score}"
 
   def addOnePointToPlayer1(): TennisGame = TennisGame(player1.addPoint(), player2)
 
@@ -15,6 +15,6 @@ case class Player(score:String) {
     case "love" => Player("15")
     case "15" => Player("30")
     case "30" => Player("40")
+    case "40" => Player("win")
   }
 }
-

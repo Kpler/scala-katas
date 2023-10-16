@@ -8,7 +8,7 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     // Given
     val game = TennisGame()
     // When
-    val result = game.getScore()
+    val result = game.getScore
     // Then
     result should be ("love-love")
   }
@@ -19,7 +19,7 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     // When
     val gameWithFirstPoint = game.addOnePointToPlayer1()
     // Then
-    gameWithFirstPoint.getScore() should be("15-love")
+    gameWithFirstPoint.getScore should be("15-love")
 
   }
 
@@ -29,7 +29,7 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     // When
     val gameWithFirstPoint = game.addOnePointToPlayer2()
     // Then
-    gameWithFirstPoint.getScore() should be("love-15")
+    gameWithFirstPoint.getScore should be("love-15")
   }
 
   "When player 1 already scored and player 2 scores, it" should "return 15-15" in {
@@ -39,7 +39,7 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     val gameWithFirstPoint = game.addOnePointToPlayer1()
     val gameWithTwoPoints = gameWithFirstPoint.addOnePointToPlayer2()
     // Then
-    gameWithTwoPoints.getScore() should be("15-15")
+    gameWithTwoPoints.getScore should be("15-15")
   }
 
    "When player 1 scores 2 times, it" should "return 30-love" in {
@@ -49,7 +49,7 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     val gameWithFirstPoint = game.addOnePointToPlayer1()
     val gameWithTwoPoints = gameWithFirstPoint.addOnePointToPlayer1()
     // Then
-    gameWithTwoPoints.getScore() should be("30-love")
+    gameWithTwoPoints.getScore should be("30-love")
   }
 
    "When player 1 scores 3 times, it" should "return 40-love" in {
@@ -60,7 +60,7 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     val gameWithTwoPoints = gameWithFirstPoint.addOnePointToPlayer1()
     val gameWithThreePoints = gameWithTwoPoints.addOnePointToPlayer1()
     // Then
-     gameWithThreePoints.getScore() should be("40-love")
+     gameWithThreePoints.getScore should be("40-love")
   }
 
   "When player 1 scored 4 times, it" should "return win-love" in {
@@ -72,7 +72,7 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     val gameWithThreePoints = gameWithTwoPoints.addOnePointToPlayer1()
     val gameWithFourPoints = gameWithThreePoints.addOnePointToPlayer1()
     // Then
-    gameWithFourPoints.getScore() should be("win-love")
+    gameWithFourPoints.getScore should be("win-love")
   }
 }
 
