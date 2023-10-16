@@ -15,7 +15,6 @@ case class Player(score:String) {
     case "love" => Player("15")
     case "15" => Player("30")
     case "30" => Player("40")
-    case "40" => Player("win")
   }
 }
 
