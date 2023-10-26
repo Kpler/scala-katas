@@ -7,12 +7,11 @@ class Example extends AnyFlatSpec with should.Matchers {
 
   "a starting game" should "have score set to love on both side" in {
     val game = new TennisGame()
-    game.score() should be ("love","love")
+    game.score() should be Score("love","love")
   }
 
 }
-
 class TennisGame() {
-  def score() = ???
+  def score(): (String, String) = ("love", "love")
 
 }
