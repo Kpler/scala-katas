@@ -3,9 +3,16 @@ import flatspec._
 import matchers._
 
 class Example extends AnyFlatSpec with should.Matchers {
+  
 
-  "A List" should "drop the first values" in {
-    val stack = List(3, 2)
-    stack.drop(1) should be (List(2))
+  "a starting game" should "have score set to love on both side" in {
+    val game = new TennisGame()
+    game.score() should be ("love","love")
   }
+
+}
+
+class TennisGame() {
+  def score() = ???
+
 }
