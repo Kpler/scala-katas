@@ -14,9 +14,16 @@ case class TennisGame(
 
   def addOnePointToPlayer1(): TennisGame = TennisGame(player1.addPoint(), player2)
 
-  def addOnePointToPlayer2(): TennisGame = TennisGame(player1, player2.addPoint())
 
+
+
+  def addOnePointToPlayer2(): TennisGame = TennisGame(player1, player2.addPoint())
 }
+
+object TennisGame {
+  val addOnePointToPlayer : TennisGame => TennisGame =  tg => tg.copy(tg.player1.addPoint(), tg.player2)
+}
+
 
 case class Player(score:String) {
   def addPoint(): Player = score match {

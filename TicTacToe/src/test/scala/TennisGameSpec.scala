@@ -1,3 +1,4 @@
+import TennisGame.addOnePointToPlayer
 import org.scalatest._
 import flatspec._
 import matchers._
@@ -74,6 +75,11 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     val game = TennisGame()
     // When
     val gameWithThreePointsPlayerOne: TennisGame = game.addOnePointToPlayer1().addOnePointToPlayer1().addOnePointToPlayer1()
+
+    (addOnePointToPlayer andThen addOnePointToPlayer andThen addOnePointToPlayer)(game)
+    addOnePointToPlayer(addOnePointToPlayer(addOnePointToPlayer(game)))
+
+
     val gameWithThreePointsForBoth: TennisGame = gameWithThreePointsPlayerOne.addOnePointToPlayer2().addOnePointToPlayer2().addOnePointToPlayer2()
     // Then
     gameWithThreePointsForBoth.getScore should be("deuce")
