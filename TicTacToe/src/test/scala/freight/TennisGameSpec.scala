@@ -1,6 +1,6 @@
 package freight
 
-import freight.TennisGame.{ FIFTEEN, INITIAL }
+import freight.TennisGame.{FIFTEEN, INITIAL, THIRTHY, THIRTY}
 import org.scalatest.flatspec._
 import org.scalatest.matchers._
 
@@ -12,9 +12,14 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     score shouldBe Score("love", "love")
   }
 
-  "given a starting game when a player score one point then Score" should "be (15,love)" in {
+  "given a starting game when player one score one point then Score" should "be (15,love)" in {
     val game = new TennisGame()
     game.playerOneScore().score() shouldBe Score("15", "love")
+  }
+
+  "given a starting game when player two score one point then Score" should "be (love,15)" in {
+    val game = new TennisGame()
+    game.playerTwoScore().score() shouldBe Score("love", "15")
   }
 
   "given a game with score 15-live, when player mark one point then score" should "be 30-love" in {
@@ -28,11 +33,18 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
 object TennisGame {
   val INITIAL = "love"
   val FIFTEEN = "15"
+  val THIRTY = "30"
 }
 class TennisGame(val scoreInitial: Score = Score(INITIAL, INITIAL)) {
+  def playerTwoScore():  TennisGame={new TennisGame(Score(INITIAL,FIFTEEN))}
+
 
   def playerOneScore(): TennisGame = {
-    new TennisGame(Score(FIFTEEN, INITIAL))
+    scoreInitial match {
+      case Score(INITIAL,INITIAL) => new TennisGame(Score(FIFTEEN, INITIAL))
+      case _ =>
+        new TennisGame(Score(THIRTY, INITIAL))
+    }
   }
   def score(): Score = scoreInitial
 
