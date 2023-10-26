@@ -12,17 +12,23 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
   }
   "given a starting game when a player score one point then Score" should "be (15,love)" in {
     val game = new TennisGame()
-    val score = game.playerOneScore()
+    val score: TennisGame = game.playerOneScore()
     score.score() shouldBe Score("15","love")
   }
 
 }
-class TennisGame() {
-  def playerOneScore() = new
-
+class TennisGame(score3: Score) {
+//  def this() = {
+//    this.score2 = Score(INITIAL, INITIAL)
+//  }
   val INITIAL = "love"
+  val score2: Score = Score(INITIAL, INITIAL)
+  def playerOneScore(): TennisGame = {
+    new TennisGame()
+  }
+
   def score(): Score = {
-    Score(INITIAL, INITIAL)
+    score2
   }
 
 }
