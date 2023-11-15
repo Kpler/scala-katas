@@ -12,10 +12,10 @@ case class TennisGame(
     }
   }
 
-  def addOnePointToPlayer1(): Either[String, TennisGame] = TennisGame(player1.addPoint().player, player2)
+  def addOnePointToPlayer1(): Either[String, TennisGame] = Right(TennisGame(player1.addPoint().player, player2))
 
 
-  def addOnePointToPlayer2(): Either[String, TennisGame] = TennisGame(player1, player2.addPoint().player)
+  def addOnePointToPlayer2(): Either[String, TennisGame] = Right(TennisGame(player1, player2.addPoint().player))
 }
 
 object TennisGame {
