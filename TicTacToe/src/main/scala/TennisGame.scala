@@ -1,7 +1,7 @@
 case class TennisGame(
                        player1: Player = Player("love"),
                        player2: Player = Player("love")) {
-  def isValid: Boolean = false
+  def isValid: Boolean = getScore != "win"
 
 
   val getScore = {
@@ -12,10 +12,10 @@ case class TennisGame(
     }
   }
 
-  def addOnePointToPlayer1(): TennisGame = TennisGame(player1.addPoint().player, player2)
+  def addOnePointToPlayer1(): Either[String, TennisGame] = TennisGame(player1.addPoint().player, player2)
 
 
-  def addOnePointToPlayer2(): TennisGame = TennisGame(player1, player2.addPoint().player)
+  def addOnePointToPlayer2(): Either[String, TennisGame] = TennisGame(player1, player2.addPoint().player)
 }
 
 object TennisGame {
