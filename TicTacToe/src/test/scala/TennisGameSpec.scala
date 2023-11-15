@@ -100,5 +100,19 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     // Then
     gameWin.getScore should be("win")
   }
+
+  "Where player one wins and player two scores again, it" should "return false" {
+    // Given
+    val game = TennisGame()
+
+    // When
+    val gameWithThreePointsPlayerOne: TennisGame = game.addOnePointToPlayer1().addOnePointToPlayer1().addOnePointToPlayer1()
+    val gameWithThreePointsForBoth: TennisGame = gameWithThreePointsPlayerOne.addOnePointToPlayer2().addOnePointToPlayer2().addOnePointToPlayer2()
+    val gameWin = gameWithThreePointsForBoth.addOnePointToPlayer2()
+    val gameFail = gameWin.addOnePointToPlayer2()
+
+    // Then
+    gameFail.isValid should be (false)
+  }
 }
 

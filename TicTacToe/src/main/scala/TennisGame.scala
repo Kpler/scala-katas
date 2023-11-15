@@ -1,6 +1,8 @@
 case class TennisGame(
                        player1: Player = Player("love"),
                        player2: Player = Player("love")) {
+  val isValid: Boolean = ???
+
 
   val getScore = {
     (player1, player2) match {
