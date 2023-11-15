@@ -12,25 +12,25 @@ case class TennisGame(
     }
   }
 
-  def addOnePointToPlayer1(): TennisGame = TennisGame(player1.addPoint()._1, player2)
+  def addOnePointToPlayer1(): TennisGame = TennisGame(player1.addPoint().player, player2)
 
 
-
-
-  def addOnePointToPlayer2(): TennisGame = TennisGame(player1, player2.addPoint()._1)
+  def addOnePointToPlayer2(): TennisGame = TennisGame(player1, player2.addPoint().player)
 }
 
 object TennisGame {
-  val addOnePointToPlayer : TennisGame => TennisGame =  tg => tg.copy(tg.player1.addPoint()._1, tg.player2)
+  val addOnePointToPlayer : TennisGame => TennisGame =  tg => tg.copy(tg.player1.addPoint().player, tg.player2)
 }
 
 
 case class Player(score:String) {
-  def addPoint(): (Player, Boolean) = score match {
-    case "love" => (Player("15"), true)
-    case "15" => (Player("30"), true)
-    case "30" => (Player("40"), true)
-    case "40" => (Player("win"), true)
-    case "win"=> (Player("win"), false)
+  def addPoint(): ValidPlayer = score match {
+    case "love" => ValidPlayer(Player("15"))
+    case "15" => ValidPlayer(Player("30"))
+    case "30" => ValidPlayer(Player("40"))
+    case "40" => ValidPlayer(Player("win"))
+    case "win"=> ValidPlayer(Player("win"), isValid = false)
   }
 }
+
+case class ValidPlayer(player: Player, isValid: Boolean = true)

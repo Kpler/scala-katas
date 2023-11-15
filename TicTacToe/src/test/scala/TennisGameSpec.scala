@@ -1,7 +1,7 @@
 import TennisGame.addOnePointToPlayer
 import org.scalatest._
-import flatspec._
-import matchers._
+import org.scalatest.flatspec._
+import org.scalatest.matchers._
 
 class TennisGameSpec extends AnyFlatSpec with should.Matchers {
 
@@ -118,6 +118,13 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     val gameFail = gameWin.addOnePointToPlayer2()
 
     gameFail.isValid should be(false)
+  }
+
+  "When we have a new tennis game, it" should "be valid" in {
+    // Given
+    val game = TennisGame()
+    // Then
+    game.isValid should be(true)
   }
 }
 
