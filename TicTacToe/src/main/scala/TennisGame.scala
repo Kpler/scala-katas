@@ -1,7 +1,7 @@
 case class TennisGame(
                        player1: Player = Player("love"),
                        player2: Player = Player("love")) {
-  val isValid: Boolean = ???
+  def isValid: Boolean = ???
 
 
   val getScore = {
@@ -31,5 +31,6 @@ case class Player(score:String) {
     case "15" => Player("30")
     case "30" => Player("40")
     case "40" => Player("win")
+    case "win"=> Player("win")
   }
 }
