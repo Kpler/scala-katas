@@ -93,6 +93,14 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
       .score() shouldBe Score(FORTY, FORTY)
   }
 
+  "given a game with score forty-forty then play 1 scores" should "be adv-forty" in {
+    game
+      .playerOneScore().playerOneScore().playerOneScore()
+      .playerTwoScore().playerTwoScore().playerTwoScore()
+      .playerOneScore()
+      .score() shouldBe Score("adv", FORTY)
+  }
+
 
 }
 object TennisGame {
@@ -112,6 +120,9 @@ class TennisGame(val currentScore: Score = Score(LOVE, LOVE)) {
 
 
   def playerOneScore(): TennisGame = {
+    if (currentScore.player1 == FORTY && currentScore.player2 == FORTY){
+      TennisGame(Score("adv", FORTY))
+    }
     new TennisGame(Score(nextValue(currentScore.player1), currentScore.player2 ))
   }
 
