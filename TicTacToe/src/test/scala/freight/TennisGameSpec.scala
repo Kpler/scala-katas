@@ -75,10 +75,22 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     game.nextValue(THIRTY) shouldBe FORTY
   }
 
+
   "given a game with score forty-love, when player 1 scores one point then score" should "be player wins" in {
     game
       .playerOneScore().playerOneScore().playerOneScore().playerOneScore().score() shouldBe Score(WIN, LOVE)
+  }
 
+  "given a game with score love-forty, when player 2 scores one point then score" should "be player wins" in {
+    game
+      .playerTwoScore().playerTwoScore().playerTwoScore().playerTwoScore().score() shouldBe Score(LOVE, WIN)
+  }
+
+  "given a game with score forty-forty then score" should "be forty-forty (not deuce-deuce)" in {
+    game
+      .playerOneScore().playerOneScore().playerOneScore()
+      .playerTwoScore().playerTwoScore().playerTwoScore()
+      .score() shouldBe Score(FORTY, FORTY)
   }
 
 
