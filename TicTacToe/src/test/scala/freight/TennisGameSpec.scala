@@ -37,13 +37,19 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
       .playerTwoScore().score() shouldBe Score(FIFTEEN, FIFTEEN)
   }
 
-  "given a game with score love-15, when player 1 score one point then score" should "be 15-15" in {
+  "given a game with score love-15, when player 1 scores one point then score" should "be 15-15" in {
     val game = new TennisGame()
     game
       .playerTwoScore()
       .playerOneScore().score() shouldBe Score(FIFTEEN, FIFTEEN)
   }
 
+  "given a game with score love-15, when player 2 scores one point then score" should "be love-30" in {
+    val game = new TennisGame()
+    game
+      .playerTwoScore()
+      .playerTwoScore().score() shouldBe Score(INITIAL, THIRTY)
+  }
 }
 object TennisGame {
   val INITIAL = "love"
@@ -53,7 +59,7 @@ object TennisGame {
 class TennisGame(val scoreInitial: Score = Score(INITIAL, INITIAL)) {
   def playerOneScore(): TennisGame = {
     scoreInitial match {
-      case Score(INITIAL,INITIAL) => new TennisGame(Score(FIFTEEN, INITIAL))
+      case Score(INITIAL, value) => new TennisGame(Score(FIFTEEN, value))
       case _ =>
         new TennisGame(Score(THIRTY, INITIAL))
     }
