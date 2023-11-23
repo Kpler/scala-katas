@@ -1,6 +1,6 @@
 package freight
 
-import freight.TennisGame.{FIFTEEN, FORTY, LOVE, THIRTY}
+import freight.TennisGame.{FIFTEEN, FORTY, LOVE, THIRTY, WIN}
 import org.scalatest.flatspec._
 import org.scalatest.matchers._
 
@@ -75,6 +75,12 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
     game.nextValue(THIRTY) shouldBe FORTY
   }
 
+  "given a game with score forty-love, when player 1 scores one point then score" should "be player wins" in {
+    game
+      .playerOneScore().playerOneScore().playerOneScore().playerOneScore().score() shouldBe Score(WIN, LOVE)
+
+  }
+
 
 }
 object TennisGame {
@@ -82,28 +88,23 @@ object TennisGame {
   val FIFTEEN = "15"
   val THIRTY = "30"
   val FORTY = "40"
+  val WIN = "player wins"
 }
 class TennisGame(val currentScore: Score = Score(LOVE, LOVE)) {
   def nextValue(currentValue: String) = currentValue match {
     case LOVE => FIFTEEN
+    case FIFTEEN => THIRTY
     case THIRTY => FORTY
-    case _ => THIRTY
+    case FORTY => WIN
   }
 
 
   def playerOneScore(): TennisGame = {
-    currentScore match {
-      case Score(playerOneValue, value) => new TennisGame(Score(nextValue(playerOneValue), value))
-    }
+    new TennisGame(Score(nextValue(currentScore.player1), currentScore.player2 ))
   }
 
-  def playerTwoScore():  TennisGame={
-    currentScore match {
-      case Score(value, playerTwoValue) => new TennisGame(Score(value, nextValue(playerTwoValue)))
-      case Score(value, LOVE) => new TennisGame(Score(value, FIFTEEN))
-      case Score(value,FIFTEEN) => new TennisGame(Score(value,THIRTY))
-      case Score(value,THIRTY) => new TennisGame(Score(value,FORTY))
-    }
+  def playerTwoScore():  TennisGame = {
+    new TennisGame(Score(currentScore.player1, nextValue(currentScore.player2)))
   }
 
   def score(): Score = currentScore
