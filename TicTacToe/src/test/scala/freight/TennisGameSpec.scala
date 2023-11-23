@@ -63,17 +63,19 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
 
   }
 
-  "given a value of love, nextvalue" should "be FIFTEEN" in {
+  "given a value of love, nextValue" should "be FIFTEEN" in {
     game.nextValue(LOVE) shouldBe FIFTEEN
   }
 
-  "given a value of fifteen, nextvalue" should "be thirty" in {
+  "given a value of fifteen, nextValue" should "be thirty" in {
     game.nextValue(FIFTEEN) shouldBe THIRTY
   }
 
-  "given a value of thirty, nextvalue" should "be thirty" in {
-    game.nextValue(FIFTEEN) shouldBe THIRTY
+  "given a value of thirty, nextValue" should "be forty" in {
+    game.nextValue(THIRTY) shouldBe FORTY
   }
+
+
 }
 object TennisGame {
   val LOVE = "love"
@@ -84,21 +86,20 @@ object TennisGame {
 class TennisGame(val currentScore: Score = Score(LOVE, LOVE)) {
   def nextValue(currentValue: String) = currentValue match {
     case LOVE => FIFTEEN
+    case THIRTY => FORTY
     case _ => THIRTY
   }
 
 
   def playerOneScore(): TennisGame = {
     currentScore match {
-      case Score(LOVE, value) => new TennisGame(Score(FIFTEEN, value))
-      case Score(THIRTY, LOVE) => new TennisGame(Score(FORTY, LOVE))
-      case _ =>
-        new TennisGame(Score(THIRTY, LOVE))
+      case Score(playerOneValue, value) => new TennisGame(Score(nextValue(playerOneValue), value))
     }
   }
 
   def playerTwoScore():  TennisGame={
     currentScore match {
+      case Score(value, playerTwoValue) => new TennisGame(Score(value, nextValue(playerTwoValue)))
       case Score(value, LOVE) => new TennisGame(Score(value, FIFTEEN))
       case Score(value,FIFTEEN) => new TennisGame(Score(value,THIRTY))
       case Score(value,THIRTY) => new TennisGame(Score(value,FORTY))
