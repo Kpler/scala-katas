@@ -46,46 +46,45 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers with EitherValues{
 
   "given a game with score 15-love, when player mark one point then score" should "be 30-love" in {
     gameFifteenLove
-      .playerOneScore()
-      .score() shouldBe Score(THIRTY, LOVE)
+      .playerOneScoreOrError().map(_.score()) shouldBe Right(Score(THIRTY, LOVE))
   }
 
   "given a game with score 15-love, when player 2 score one point then score" should "be 15-15" in {
     gameFifteenLove
-      .playerTwoScore()
-      .score() shouldBe Score(FIFTEEN, FIFTEEN)
+      .playerTwoScoreOrError().map(_.score()) shouldBe Right(Score(FIFTEEN, FIFTEEN))
   }
 
   "given a game with score love-15, when player 1 scores one point then score" should "be 15-15" in {
     gameLoveFifteen
-      .playerOneScore()
-      .score() shouldBe Score(FIFTEEN, FIFTEEN)
+      .playerOneScoreOrError().map(_.score()) shouldBe Right(Score(FIFTEEN, FIFTEEN))
   }
 
   "given a game with score love-15, when player 2 scores one point then score" should "be love-30" in {
     gameLoveFifteen
-      .playerTwoScore()
-      .score() shouldBe Score(LOVE, THIRTY)
+      .playerTwoScoreOrError().map(_.score()) shouldBe Right(Score(LOVE, THIRTY))
   }
 
   "given a game with score thirty-love, when player 2 scores one point then score" should "be thirty-fifteen" in {
     gameThirtyLove
-      .playerTwoScore()
-      .score() shouldBe Score(THIRTY, FIFTEEN)
+      .playerTwoScoreOrError().map(_.score()) shouldBe Right(Score(THIRTY, FIFTEEN))
   }
 
   "given a game with score thirty-love, when player 1 scores one point then score" should "be forty-love" in {
     gameThirtyLove
-      .playerOneScore()
-      .score() shouldBe Score(FORTY, LOVE)
+      .playerOneScoreOrError().map(_.score()) shouldBe Right(Score(FORTY, LOVE))
   }
 
   "given a game with score love-thirty, when player 2 scores one point then score" should "be love-forty" in {
-    game
-      .playerTwoScore()
-      .playerTwoScore()
-      .playerTwoScore()
-      .score() shouldBe Score(LOVE, FORTY)
+
+
+    val errorOrGame: Either[String, TennisGame] = for {
+      firstValue <-   game.playerTwoScoreOrError()
+      secondValue <- firstValue.playerTwoScoreOrError()
+      thirdValue <- secondValue.playerTwoScoreOrError()
+    } yield  thirdValue
+
+
+    errorOrGame.map(_.score()) shouldBe Right(Score(LOVE, FORTY))
 
   }
 
@@ -197,6 +196,7 @@ case class TennisGame(currentScore: Score = Score(LOVE, LOVE)) {
   }
 
 
+  @deprecated("use playerOneScoreOrError", "2023-12-01")
   def playerOneScore(): TennisGame = {
     currentScore match {
       case Score(FORTY, FORTY) => TennisGame(Score(ADV, FORTY))
@@ -207,6 +207,7 @@ case class TennisGame(currentScore: Score = Score(LOVE, LOVE)) {
 
   }
 
+  @deprecated("use playerTwoScoreOrError", "2023-12-01")
   def playerTwoScore(): TennisGame = {
     currentScore match {
       case Score(FORTY, FORTY)=> TennisGame(Score(FORTY, ADV))
