@@ -1,10 +1,11 @@
 package freight
 
 import freight.TennisGame._
+import org.scalatest.EitherValues
 import org.scalatest.flatspec._
 import org.scalatest.matchers._
 
-class TennisGameSpec extends AnyFlatSpec with should.Matchers {
+class TennisGameSpec extends AnyFlatSpec with should.Matchers with EitherValues{
   val game = new TennisGame()
   val gameLoveFifteen = game
     .playerTwoScore()
@@ -30,7 +31,8 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
   }
 
   "given a starting game when player one score one point then Score" should "be (15,love)" in {
-    game.playerOneScore().score() shouldBe Score(FIFTEEN, LOVE)
+    val game1 = game.playerOneScoreOrError()
+    game1.map(_.score()) shouldBe Right(Score(FIFTEEN, LOVE))
   }
 
   "given a starting game when player two score one point then Score" should "be (love,15)" in {
@@ -155,13 +157,16 @@ object TennisGame {
   val WIN = "player wins"
   val ADV = "adv"
 }
-case class TennisGame(val currentScore: Score = Score(LOVE, LOVE)) {
+case class TennisGame(currentScore: Score = Score(LOVE, LOVE)) {
   def nextValue(currentValue: String): String = currentValue match {
     case LOVE => FIFTEEN
     case FIFTEEN => THIRTY
     case THIRTY => FORTY
     case FORTY => WIN
   }
+
+
+  def playerOneScoreOrError():  Either[String,TennisGame] = Right(playerOneScore())
 
   def playerOneScore(): TennisGame = {
     currentScore match {
