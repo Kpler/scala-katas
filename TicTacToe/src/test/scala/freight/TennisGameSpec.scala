@@ -25,7 +25,6 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers with EitherValues{
 
 
   "a starting game" should "have score set to love on both side" in {
-
     val score: Score = game.score()
     score shouldBe Score(LOVE, LOVE)
   }
@@ -100,6 +99,12 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers with EitherValues{
     gameFortyLove
       .playerOneScore()
       .score() shouldBe Score(WIN, LOVE)
+  }
+
+  "given a game with score win-love, when player 1 scores one point then score" should "return player on with error" in {
+    gameFortyLove
+      .playerOneScore()
+      .playerOneScoreOrError() shouldBe Left("Player 1 with error")
   }
 
   "given a game with score love-forty, when player 2 scores one point then score" should "be player wins" in {
