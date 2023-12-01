@@ -8,6 +8,21 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
   val game = new TennisGame()
   val gameLoveFifteen = game
     .playerTwoScore()
+    val gameFifteenLove = game
+      .playerOneScore()
+  val gameThirtyLove: TennisGame =
+    gameFifteenLove
+    .playerOneScore()
+  private val gameFortyLove: TennisGame = gameThirtyLove
+    .playerOneScore()
+  private val gameFortyForty: TennisGame = gameFortyLove
+    .playerTwoScore()
+    .playerTwoScore()
+    .playerTwoScore()
+
+
+
+
   "a starting game" should "have score set to love on both side" in {
 
     val score: Score = game.score()
@@ -23,21 +38,18 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
   }
 
   "given a game with score 15-love, when player mark one point then score" should "be 30-love" in {
-    game
-      .playerOneScore()
+    gameFifteenLove
       .playerOneScore()
       .score() shouldBe Score(THIRTY, LOVE)
   }
 
   "given a game with score 15-love, when player 2 score one point then score" should "be 15-15" in {
-    game
-      .playerOneScore()
+    gameFifteenLove
       .playerTwoScore()
       .score() shouldBe Score(FIFTEEN, FIFTEEN)
   }
 
   "given a game with score love-15, when player 1 scores one point then score" should "be 15-15" in {
-
     gameLoveFifteen
       .playerOneScore()
       .score() shouldBe Score(FIFTEEN, FIFTEEN)
@@ -50,21 +62,15 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
   }
 
   "given a game with score thirty-love, when player 2 scores one point then score" should "be thirty-fifteen" in {
-    game
-      .playerOneScore()
-      .playerOneScore()
+    gameThirtyLove
       .playerTwoScore()
       .score() shouldBe Score(THIRTY, FIFTEEN)
-
   }
 
   "given a game with score thirty-love, when player 1 scores one point then score" should "be forty-love" in {
-    game
-      .playerOneScore()
-      .playerOneScore()
+    gameThirtyLove
       .playerOneScore()
       .score() shouldBe Score(FORTY, LOVE)
-
   }
 
   "given a game with score love-thirty, when player 2 scores one point then score" should "be love-forty" in {
@@ -89,10 +95,7 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
   }
 
   "given a game with score forty-love, when player 1 scores one point then score" should "be player wins" in {
-    game
-      .playerOneScore()
-      .playerOneScore()
-      .playerOneScore()
+    gameFortyLove
       .playerOneScore()
       .score() shouldBe Score(WIN, LOVE)
   }
@@ -107,63 +110,39 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
   }
 
   "given a game with score forty-forty then score" should "be forty-forty (not deuce-deuce)" in {
-    game
-      .playerOneScore()
-      .playerOneScore()
-      .playerOneScore()
-      .playerTwoScore()
-      .playerTwoScore()
-      .playerTwoScore()
+    gameFortyForty
       .score() shouldBe Score(FORTY, FORTY)
   }
 
   "given a game with score forty-forty then play 1 scores" should "be adv-forty" in {
-    game
-      .playerOneScore()
-      .playerOneScore()
-      .playerOneScore()
-      .playerTwoScore()
-      .playerTwoScore()
-      .playerTwoScore()
+    gameFortyForty
       .playerOneScore()
       .score() shouldBe Score(ADV, FORTY)
   }
   "given a game with score forty-forty then play 2 scores" should "be forty-adv" in {
-    game
-      .playerOneScore().playerOneScore().playerOneScore()
-      .playerTwoScore().playerTwoScore().playerTwoScore()
+    gameFortyForty
       .playerTwoScore()
       .score() shouldBe Score(FORTY, ADV)
   }
   "given a game with score adv-forty then play 1 scores" should "be player 1 wins" in {
-    game
-      .playerOneScore().playerOneScore().playerOneScore()
-      .playerTwoScore().playerTwoScore().playerTwoScore()
-      .playerOneScore().playerOneScore()
+    gameFortyForty.playerOneScore()
+      .playerOneScore()
       .score() shouldBe Score(WIN, FORTY)
   }
   "given a game with score forty-adv then play 2 scores" should "be player 2 wins" in {
-    game
-      .playerOneScore().playerOneScore().playerOneScore()
-      .playerTwoScore().playerTwoScore().playerTwoScore()
+    gameFortyForty
       .playerTwoScore().playerTwoScore()
       .score() shouldBe Score(FORTY, WIN)
   }
 
   "given a game with score forty-adv then play 1 scores" should "be forty-forty" in {
-    game
-      .playerOneScore().playerOneScore().playerOneScore()
-      .playerTwoScore().playerTwoScore().playerTwoScore()
-      .playerTwoScore()
+    gameFortyForty.playerTwoScore()
       .playerOneScore()
       .score() shouldBe Score(FORTY, FORTY)
   }
 
   "given a game with score adv-forty then play 2 scores" should "be forty-forty" in {
-    game
-      .playerOneScore().playerOneScore().playerOneScore()
-      .playerTwoScore().playerTwoScore().playerTwoScore()
-      .playerOneScore()
+    gameFortyForty.playerOneScore()
       .playerTwoScore()
       .score() shouldBe Score(FORTY, FORTY)
   }
