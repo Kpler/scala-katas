@@ -135,14 +135,14 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
       .playerTwoScore()
       .score() shouldBe Score(FORTY, ADV)
   }
-  "given a game with score adv-forty then play 1 scores" should "be player wins" in {
+  "given a game with score adv-forty then play 1 scores" should "be player 1 wins" in {
     game
       .playerOneScore().playerOneScore().playerOneScore()
       .playerTwoScore().playerTwoScore().playerTwoScore()
       .playerOneScore().playerOneScore()
       .score() shouldBe Score(WIN, FORTY)
   }
-  "given a game with score forty-adv then play 2 scores" should "be player wins" in {
+  "given a game with score forty-adv then play 2 scores" should "be player 2 wins" in {
     game
       .playerOneScore().playerOneScore().playerOneScore()
       .playerTwoScore().playerTwoScore().playerTwoScore()
@@ -150,6 +150,23 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers {
       .score() shouldBe Score(FORTY, WIN)
   }
 
+  "given a game with score forty-adv then play 1 scores" should "be forty-forty" in {
+    game
+      .playerOneScore().playerOneScore().playerOneScore()
+      .playerTwoScore().playerTwoScore().playerTwoScore()
+      .playerTwoScore()
+      .playerOneScore()
+      .score() shouldBe Score(FORTY, FORTY)
+  }
+
+  "given a game with score adv-forty then play 2 scores" should "be forty-forty" in {
+    game
+      .playerOneScore().playerOneScore().playerOneScore()
+      .playerTwoScore().playerTwoScore().playerTwoScore()
+      .playerOneScore()
+      .playerTwoScore()
+      .score() shouldBe Score(FORTY, FORTY)
+  }
 }
 object TennisGame {
   val LOVE = "love"
@@ -171,6 +188,7 @@ case class TennisGame(val currentScore: Score = Score(LOVE, LOVE)) {
     currentScore match {
       case Score(FORTY, FORTY) => TennisGame(Score(ADV, FORTY))
       case Score(ADV, FORTY) => TennisGame(Score(WIN, FORTY))
+      case Score(FORTY, ADV) => TennisGame(Score(FORTY, FORTY))
       case _ => TennisGame(Score(nextValue(currentScore.player1), currentScore.player2))
     }
 
@@ -180,6 +198,7 @@ case class TennisGame(val currentScore: Score = Score(LOVE, LOVE)) {
     currentScore match {
       case Score(FORTY, FORTY)=> TennisGame(Score(FORTY, ADV))
       case Score(FORTY, ADV)=> TennisGame(Score(FORTY, WIN))
+      case Score(ADV, FORTY) => TennisGame(Score(FORTY, FORTY))
       case  _ => TennisGame(Score(currentScore.player1, nextValue(currentScore.player2)))
     }
   }
