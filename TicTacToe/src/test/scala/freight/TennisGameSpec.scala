@@ -21,6 +21,12 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers with EitherValues{
     .playerTwoScore()
     .playerTwoScore()
 
+  private val gameLoveWin: TennisGame = game
+    .playerTwoScore()
+    .playerTwoScore()
+    .playerTwoScore()
+    .playerTwoScore()
+
 
 
 
@@ -30,8 +36,8 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers with EitherValues{
   }
 
   "given a starting game when player one score one point then Score" should "be (15,love)" in {
-    val game1 = game.playerOneScoreOrError()
-    game1.map(_.score()) shouldBe Right(Score(FIFTEEN, LOVE))
+    val game1OrError = game.playerOneScoreOrError()
+    game1OrError shouldBe Right(TennisGame(Score(FIFTEEN, LOVE)))
   }
 
   "given a starting game when player two score one point then Score" should "be (love,15)" in {
@@ -101,10 +107,16 @@ class TennisGameSpec extends AnyFlatSpec with should.Matchers with EitherValues{
       .score() shouldBe Score(WIN, LOVE)
   }
 
-  "given a game with score win-love, when player 1 scores one point then score" should "return player on with error" in {
+  "given a game with score win-love, when player 1 scores one point then score" should "return player one with error" in {
     gameFortyLove
       .playerOneScore()
-      .playerOneScoreOrError() shouldBe Left("Player 1 with error")
+      .playerOneScoreOrError() shouldBe Left(playerOneError)
+  }
+
+  "given a game with score love-win, when player 2 scores one point then score" should "return player two with error" in {
+    gameLove
+      .playerOneScore()
+      .playerOneScoreOrError() shouldBe Left(playerOneError)
   }
 
   "given a game with score love-forty, when player 2 scores one point then score" should "be player wins" in {
@@ -161,6 +173,7 @@ object TennisGame {
   val FORTY = "40"
   val WIN = "player wins"
   val ADV = "adv"
+  val playerOneError = "Player 1 with error"
 }
 case class TennisGame(currentScore: Score = Score(LOVE, LOVE)) {
   def nextValue(currentValue: String): String = currentValue match {
@@ -171,7 +184,12 @@ case class TennisGame(currentScore: Score = Score(LOVE, LOVE)) {
   }
 
 
-  def playerOneScoreOrError():  Either[String,TennisGame] = Right(playerOneScore())
+  def playerOneScoreOrError():  Either[String,TennisGame] = currentScore match {
+    case Score(WIN,_) =>
+      Left(playerOneError)
+    case _ => Right(playerOneScore())
+  }
+
 
   def playerOneScore(): TennisGame = {
     currentScore match {
