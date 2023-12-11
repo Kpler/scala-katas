@@ -4,8 +4,25 @@ import org.scalatest.matchers._
 class PasswordValidationSpec extends AnyFlatSpec with should.Matchers {
 
   "Validator" should "refuse any password with less than 8 characters" in {
+    // Given
     val validator = new PasswordValidator()
-    validator.validatePassword("Kpler_1") should be (false)
+
+    // When
+    val result = validator.validatePassword("Kpler_1")
+
+    // Then
+    result should be (false)
+  }
+
+  "Validator" should "accept a password respecting all rules" in {
+    // Given
+    val validator = new PasswordValidator()
+
+    // When
+    val result = validator.validatePassword("Kpler_1234")
+
+    // Then
+    result should be(true)
   }
 }
 
