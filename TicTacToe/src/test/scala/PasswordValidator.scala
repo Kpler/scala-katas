@@ -1,42 +1,49 @@
 class PasswordValidator() {
   def validatePassword(password: String) : Boolean = {
-    if (isLessThan9(password)) {
-      return false
+    val result = isLessThan9(password).flatMap(
+      doesNotContainUnderscore
+    ).flatMap(doesNotContainLowerCase)
+      .flatMap(isLessThan9)
+      .flatMap(doesNotContainUpperCase)
+      .flatMap(doesNotContainDigit)
+    result match {
+      case Some(_) => true
+      case None => false
     }
-
-    if (doesNotContainLowerCase(password)) {
-      return false
-    }
-
-    if (doesNotContainUpperCase(password)) {
-      return false
-    }
-
-    if (doesNotContainDigit(password)) {
-      return false
-    }
-
-    if (doesNotContainUnderscore(password)) {
-      return false
-    }
-
-    true
   }
 
-  private def doesNotContainUnderscore(password: String) = {
-    !password.contains("_")
+  private def doesNotContainUnderscore(password: String): Option[String] = {
+    if(!password.contains("_")) {
+      return None
+    }
+    Option(password)
   }
 
-  private def isLessThan9(password: String): Boolean =
-    password.length <= 8
+  private def isLessThan9(password: String): Option[String] = {
+    if(password.length <= 8) {
+      return None
+    }
+    Option(password)
+  }
 
-  private def doesNotContainUpperCase(password: String): Boolean =
-    password.toLowerCase().equals(password)
+  private def doesNotContainUpperCase(password: String): Option[String] = {
+    if(password.toLowerCase().equals(password)) {
+      return None
+    }
+    Option(password)
+  }
 
-  private def doesNotContainLowerCase(password: String): Boolean =
-    password.toUpperCase().equals(password)
+  private def doesNotContainLowerCase(password: String): Option[String] = {
+    if(password.toUpperCase().equals(password)) {
+      return None
+    }
+    Option(password)
+  }
 
-  private def doesNotContainDigit(password: String) = {
-    !password.matches(".*\\d+.*")
+  private def doesNotContainDigit(password: String): Option[String] = {
+    if(!password.matches(".*\\d+.*")) {
+      return None
+    }
+    Option(password)
   }
 }
