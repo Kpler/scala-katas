@@ -1,23 +1,23 @@
 class PasswordValidator() {
-  def checkPasswordLength(password: String): Boolean =
+  private def isLongerThan8(password: String): Boolean =
     password.length <= 8
 
-  def checkLowerCase(password: String): Boolean =
+  private def containsUpperCase(password: String): Boolean =
     password.toLowerCase().equals(password)
 
-  def checkUpperCase(password: String): Boolean =
+  private def containsLowerCase(password: String): Boolean =
     password.toUpperCase().equals(password)
 
   def validatePassword(password: String) : Boolean = {
-    if (checkPasswordLength(password)) {
+    if (isLongerThan8(password)) {
       return false
     }
 
-    if (checkLowerCase(password)) {
+    if (containsLowerCase(password)) {
       return false
     }
 
-    if (checkUpperCase(password)) {
+    if (containsUpperCase(password)) {
       return false
     }
 
