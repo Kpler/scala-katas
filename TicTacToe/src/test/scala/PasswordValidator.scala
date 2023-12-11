@@ -1,3 +1,9 @@
 class PasswordValidator() {
-  def validatePassword(password: String) : Boolean = password.length > 8
+  def validatePassword(password: String) : Boolean = {
+    if (password.length <= 8) {
+      false
+    }
+
+    true
+  }
 }
