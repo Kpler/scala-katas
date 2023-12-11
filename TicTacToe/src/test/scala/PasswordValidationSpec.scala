@@ -68,6 +68,17 @@ class PasswordValidationSpec extends AnyFlatSpec with should.Matchers {
     // Then
     result should be(false)
   }
+
+  "Validator" should "refuse password without underscore" in {
+    // Given
+    val validator = new PasswordValidator()
+
+    // When
+    val result = validator.validatePassword("Kpler123245")
+
+    // Then
+    result should be(false)
+  }
 }
 
 
