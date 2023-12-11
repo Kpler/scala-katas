@@ -21,6 +21,10 @@ class PasswordValidator() {
       return false
     }
 
+    if (!password.matches("[0-9]")) {
+      return false
+    }
+
     true
   }
 }

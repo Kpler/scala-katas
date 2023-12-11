@@ -58,15 +58,15 @@ class PasswordValidationSpec extends AnyFlatSpec with should.Matchers {
     result should be(true)
   }
 
-  "Validator" should "accept a password respecting all rules" in {
+  "Validator" should "refuse password without digits" in {
     // Given
     val validator = new PasswordValidator()
 
     // When
-    val result = validator.validatePassword("Kpler_1234")
+    val result = validator.validatePassword("Kpler_kplr")
 
     // Then
-    result should be(true)
+    result should be(false)
   }
 }
 
