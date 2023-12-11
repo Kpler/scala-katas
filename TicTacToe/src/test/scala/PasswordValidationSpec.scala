@@ -36,6 +36,17 @@ class PasswordValidationSpec extends AnyFlatSpec with should.Matchers {
     result should be(false)
   }
 
+  "Validator" should "refuse any password without a lowercase letter" in {
+    // Given
+    val validator = new PasswordValidator()
+
+    // When
+    val result = validator.validatePassword("KPLER_1234")
+
+    // Then
+    result should be(false)
+  }
+
   "Validator" should "accept a password respecting all rules" in {
     // Given
     val validator = new PasswordValidator()
