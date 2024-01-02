@@ -15,7 +15,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
     val result = for {
       a <- List(1, 2, 3, 4)
     } yield a + 1
-    val expected = List(2, 3, 4, 5)
+    val expected = ???
     result shouldBe expected
   }
 
@@ -28,7 +28,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
       a <- List(1, 2)
       b <- List(3, 4)
     } yield a + b
-    val expected = List(4, 5, 5, 6)
+    val expected = ???
     result shouldBe expected
   }
 
@@ -41,7 +41,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
       a <- List(1, 2)
       b <- a :: List(7, 8, 9)
     } yield b
-    val expected = List(1, 7, 8, 9, 2, 7, 8, 9)
+    val expected = ???
     result shouldBe expected
   }
 
@@ -50,7 +50,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
   test("Exercise 4: What is expected ?") {
 
     val result = List(1, 2).flatMap(a => List(3, 4).map(b => a + b))
-    val expected = List(4, 5, 5, 6)
+    val expected = ???
     result shouldBe expected
   }
 
@@ -62,10 +62,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
    * @param lst - the list of integer to duplicate the elements from
    * @return - the list with all elements from 'lst' duplicated
    */
-  def duplicateElements(lst: List[Int]): List[Int] = for {
-    a <- lst
-    b <- List(a, a)
-  } yield b
+  def duplicateElements(lst: List[Int]): List[Int] = ???
 
   test("Exercice 5: should duplicate the elements") {
     duplicateElements(List(1, 2, 3, 4)) shouldBe List(1, 1, 2, 2, 3, 3, 4, 4)
@@ -86,16 +83,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
    * @param list - the list of integer to compute the missing sequence from
    * @return - a new list that contains the complete sequence from the first element of the list to the last one
    */
-  def fillHoles(list: List[Int]): List[Int] = {
-    if (list.isEmpty || list.size == 1) list
-    else {
-      val missesEnd = for {
-        a <- list.sliding(2)
-        b <- a.head until a(1)
-      } yield b
-      missesEnd.toList :+ list.last
-    }
-  }
+  def fillHoles(list: List[Int]): List[Int] = ???
 
   test("Exercice 5: should complete the missing sequence (hard)") {
     fillHoles(List(1, 4, 9)) shouldBe List(1, 2, 3, 4, 5, 6, 7, 8, 9)
@@ -108,7 +96,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
 
   /** Rewrite the previous function sumQuadraticFor with flatMap and map
    */
-  def sumQuadraticMap(list: List[Int]): List[Int] = list.flatMap(a => list.tail.map(b => a + b))
+  def sumQuadraticMap(list: List[Int]): List[Int] = ???
 
   test("Exercice 6: should sumQuadraticFor compute the same output as sumQuadraticMap") {
     val lst = List(1, 5, 2, 3, 6)
@@ -132,7 +120,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
     val result = for {
       a <- Some(1)
     } yield a + 1
-    val expected = Some(2)
+    val expected = ???
     result shouldBe expected
   }
 
@@ -141,7 +129,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
       a <- Some(1)
       b <- Some(2)
     } yield a + b
-    val expected = Some(3)
+    val expected = ???
     result shouldBe expected
   }
 
@@ -151,7 +139,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
       a <- Some(1)
       b <- optB
     } yield a + b
-    val expected = None
+    val expected = ???
     result shouldBe expected
   }
 
@@ -161,7 +149,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
       a <- optA
       b <- Some(2)
     } yield a + b
-    val expected = None
+    val expected = ???
     result shouldBe expected
   }
 
@@ -171,7 +159,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
       _ <- optA // _ => do not use the value from optA
       b <- Some(2)
     } yield b
-    val expected = None
+    val expected = ???
     result shouldBe expected
   }
 
@@ -194,7 +182,7 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
         a * 2,
       ) // wait for the first future to complete before to start another one, using the result the of the first one
     } yield a + b
-    val expected: Int = 6
+    val expected: Int = ???
     Await.result(result, 1.seconds) shouldBe expected
   }
 }
