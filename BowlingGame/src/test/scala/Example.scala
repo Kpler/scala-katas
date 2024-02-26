@@ -9,11 +9,12 @@ class Example extends AnyFlatSpec with should.Matchers {
     game.score() should be (0)
   }
 
-  "the game score " should "player rolls" in {
+  "the game score" should "be incremented when the player rolls" in {
     val game = new Game()
     game.roll(1)
     game.score() should be (1)
   }
 
+  "the spare" should "be "
 
 }
