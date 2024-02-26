@@ -4,8 +4,11 @@ import matchers._
 
 class Example extends AnyFlatSpec with should.Matchers {
 
-  "A List" should "drop the first values" in {
-    val stack = List(3, 2)
-    stack.drop(1) should be (List(2))
+  "the game" should "start" in {
+    //While
+    val game = new Game()
+    game.score() should be (0)
   }
+
+
 }
