@@ -18,8 +18,7 @@ class Example extends AnyFlatSpec with should.Matchers {
   "the spare" should "increment the last roll twice if there is a spare" in {
     val game = new Game()
     game.roll(3)
-    game.roll(7) // frame score : 3 + 7 + 4
-
+    game.roll(7)
     // Spare, next roll will be multiplied by 2
     game.roll(4)
 
