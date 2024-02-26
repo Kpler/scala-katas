@@ -1,9 +1,11 @@
 class Game {
+  var scores: Array[Int] = Array()
 
-  private var totalScore = 0
-  def score(): Int = totalScore
+  def score(): Int = {
+    scores.grouped(2).foldLeft(0)((acc, y) => acc + sum(y))
+  }
 
   def roll(i: Int) = {
-    totalScore += i
+    scores + i
   }
 }
