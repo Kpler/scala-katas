@@ -15,7 +15,7 @@ class Example extends AnyFlatSpec with should.Matchers {
     game.score() should be(1)
   }
 
-  "the spare" should "increment the last roll twice if there is a spare" in {
+  "the spare" should "double the next roll if there is a spare" in {
     val game = new Game()
     game.roll(3)
     game.roll(7)
@@ -34,4 +34,14 @@ class Example extends AnyFlatSpec with should.Matchers {
     game.score() should be(3 + 6 + 4)
   }
 
+  "the strike" should "double the next roll if there is a strike" in {
+    val game = new Game()
+    game.roll(10)
+
+    game.roll(3)
+
+    game.score() should be(10 + 3 + 3)
+  }
+
+  // TODO: Test that strikes multiplies the next two rolls by 2
 }

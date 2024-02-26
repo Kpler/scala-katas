@@ -21,6 +21,9 @@ class Game {
   }
 
   def roll(i: Int): Unit = {
-    scores = scores :+ i
+    if (i == maxPins)
+      scores = scores :++ Seq(i, 0)
+    else
+      scores = scores :+ i
   }
 }
