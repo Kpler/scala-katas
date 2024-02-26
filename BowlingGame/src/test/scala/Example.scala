@@ -25,4 +25,14 @@ class Example extends AnyFlatSpec with should.Matchers {
     game.score() should be(18) // 3 + 7 + 4 + 4
   }
 
+  "the no spare" should "just sums up the elements the last" in {
+    val game = new Game()
+    game.roll(3)
+    game.roll(6)
+    // Spare, next roll will be multiplied by 2
+    game.roll(4)
+
+    game.score() should be(13) // 3 + 6 + 4
+  }
+
 }
