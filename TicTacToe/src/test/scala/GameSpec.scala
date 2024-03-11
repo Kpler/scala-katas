@@ -10,16 +10,16 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
     game.cols should have size 3
   }
 
-    it should "have 3 rows" in {
-        val game = new Game()
+  "A Game" should "have 3 rows" in {
+      val game = new Game()
 
-        game.rows should have size 3
-    }
+      game.rows should have size 3
+  }
 
-  it should "have playerX and playerO" in {
+  "A Game" should "have playerX and playerO" in {
     val game = new Game()
 
-    game.playerX shouldEqual "X"
-    game.playerO shouldEqual "O"
+    game.playerX.name shouldEqual "X"
+    game.playerO.name shouldEqual "O"
   }
 }
