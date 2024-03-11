@@ -1,3 +1,4 @@
 class Game {
-  val cols = List(1,2,3)
+  val cols: List[Int] = List(1,2,3)
+    val rows: List[Int] = List(1,2,3)
 }
