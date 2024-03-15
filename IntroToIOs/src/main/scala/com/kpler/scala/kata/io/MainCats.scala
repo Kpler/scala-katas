@@ -1,6 +1,6 @@
 package com.kpler.scala.kata.io
 
-import cats.effect.{ExitCode, IO, IOApp}
+import cats.effect.{ ExitCode, IO, IOApp }
 
 import scala.util.Random
 
