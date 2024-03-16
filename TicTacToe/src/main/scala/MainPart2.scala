@@ -1,12 +1,18 @@
 import scala.annotation.tailrec
 import scala.math.abs
 
-object Main {
+object MainPart2 {
 
   def main(args: Array[String]): Unit = {
     println("Hello Scala FANS !!!")
 
-    // TODO: Implement the singly linked list of MyList in a functional way - using the variadic function syntax
+    // Todo: Implement the singly linked list of MyList in a functional way - using the variadic function syntax
+
+    // Pattern matching
+    // Todo: I want that if some variable named stuffList (for instance) of type List of Int has more than 1 element
+    // then it returns the first element otherwise it return -1
+
+    // Todo: Let's do it again with our MyList
   }
 }
 
@@ -25,6 +31,6 @@ sealed trait MyList[+A]
 
   source: chatGPT
  */
-case object Nil extends MyList[Nothing] // A `List` data constructor representing the empty list
-case class Cons[+A](head: A, tail: MyList[A]) extends MyList[A]
+case object MyNil extends MyList[Nothing] // A `List` data constructor representing the empty list
+case class MyCons[+A](head: A, tail: MyList[A]) extends MyList[A]
 
