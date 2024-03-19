@@ -31,9 +31,6 @@ object Main {
     // todo: write a public format function that will take a string, the integer and a function
     // println(FirstProgram.yourHigherOrderFunction(the string (absolute value / factorial), the integer, and the function))
 
-    println(SecondProgram.higherOrderFormat("absolute value", -42, abs))
-    println(SecondProgram.higherOrderFormat("factorial", 4, SecondProgram.factorial))
-
     // Todo: Go make some generic function in FpSpec
 
     // Todo: Go make isSorted tests work, tips: higher order function all the way
@@ -85,13 +82,9 @@ object SecondProgram {
     msg.format(n, factorial(n))
   }
 
-  def higherOrderFormat(msg: String, n: Int, fn: Int => Int): String = {
-    val newMsg = "The %s of %d is %d."
-    newMsg.format(msg, n, fn(n))
-  }
-
-  def printAbsAndFactorial(): Unit =
+  def printAbsAndFactorial(): Unit = {
     println(formatAbs(-42))
-  println(formatFactorial(7))
+    println(formatFactorial(7))
+  }
 
 }
