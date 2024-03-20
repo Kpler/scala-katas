@@ -49,7 +49,7 @@ class FpSpec extends AnyFlatSpec with should.Matchers {
 
     // Be careful you need to change the signature to pass a function that will test equality
     // get me the index of a
-//    genericFindFirst(chars, stuff) should be(1)
+//    genericFindFirst(chars, stuff, fn) should be(1)
   }
 
   "findFirst" should "become a generic function called genericFindFirst and work for String" in {

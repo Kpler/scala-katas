@@ -46,8 +46,6 @@ object Main {
     println(fn(0.2d))
     println(fnWithAndThen(0.2d))
     println(fnWithCompose(0.2d))
-
-
   }
 }
 
