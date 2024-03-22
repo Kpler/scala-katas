@@ -29,7 +29,12 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
 
     val newGame = game.playXPlay(0)
 
-    game.rows should equal(List(List("X", "2", "3"), List("4", "5", "6"), List("7", "8", "9")))
+    newGame.rows should equal(List(List("X", "2", "3"), List("4", "5", "6"), List("7", "8", "9")))
+  }
+
+  "PlayerO plays after PlayerX and " should "have O in the second cell " in {
+    val game = Game()
+    val newGame = ???
   }
 
 }

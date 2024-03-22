@@ -4,7 +4,7 @@ case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5",
     val firstRow: List[String] = rows.head
 
     val firstRowUpdated: List[String] =  firstRow.updated(cell, "X")
-    rows.updated(0, firstRowUpdated.toList)
+    Game(rows.updated(0, firstRowUpdated.toList))
   }
 
   val cols: List[Int] = List(1,2,3)
