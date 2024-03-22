@@ -1,8 +1,9 @@
 class Game {
-  def playXPlay(cell: Int ): Seq[List[String]] = {
-    val firstRow: List[String] = rows(0)
+  def playXPlay(cell: Int ): List[List[String]]  = {
+    val firstRow: List[String] = rows.head
 
-    irstRow.updated(cell, List'("X", "2", "3"))
+    val firstRowUpdated: Seq[Serializable] =  firstRow.updated(cell, List("X", "2", "3"))
+    rows.updated(0, firstRowUpdated.toList)
 
   }
 
