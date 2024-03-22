@@ -1,9 +1,9 @@
 class Game {
   def playXPlay(cell: Int ): Seq[List[String]] = {
     val firstRow: List[String] = rows(0)
-    firstRow match {
-      case head :: tail =>  List("X" :: tail)
-    }
+
+    irstRow.updated(cell, List'("X", "2", "3"))
+
   }
 
   val cols: List[Int] = List(1,2,3)
