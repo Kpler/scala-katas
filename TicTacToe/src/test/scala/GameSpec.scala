@@ -42,8 +42,16 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
   "when PlayerX plays in an occupied cell, it "should "raise an error" in {
     val game = Game()
 
-    assertThrows[RuntimeException] { 
-      val newGame = game.playXPlay(0).play0Play(0)
+    assertThrows[RuntimeException] {
+      game.playXPlay(0).play0Play(0)
+    }
+  }
+
+  "when PlayerX plays in the fourth cell" should "raise an error" in {
+    val game = Game()
+
+    assertThrows[RuntimeException] {
+      game.playXPlay(0).play0Play(0)
     }
   }
 }

@@ -6,6 +6,10 @@ case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5",
 
   private def play(cell: Int, playerName: String) = {
     val firstRow: List[String] = rows.head
+    firstRow(cell) match {
+      case "X" | "0" => throw new RuntimeException("Cell already occupied")
+      case _ =>
+    }
     val firstRowUpdated: List[String] = firstRow.updated(cell, playerName)
     Game(rows.updated(0, firstRowUpdated))
   }
