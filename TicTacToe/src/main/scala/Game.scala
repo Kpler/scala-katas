@@ -8,8 +8,15 @@ case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5",
       2
     }
   }
+
   def getColIndex(cell: Int): Int = {
-    1
+    if (cell == 1 || cell == 4 || cell == 7){
+      0
+    } else if (cell == 2 || cell == 5 || cell == 8){
+      1
+    } else {
+      2
+    }
   }
 
 
@@ -19,7 +26,7 @@ case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5",
 
   private def play(cell: Int, playerName: String) = {
     val rowIndex = getRowIndex(cell)
-    val colIndex = cell % 3
+    val colIndex = getColIndex(cell)
 
     val row: List[String] = rows(rowIndex)
     row(cell) match {
