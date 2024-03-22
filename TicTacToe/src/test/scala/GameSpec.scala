@@ -25,7 +25,7 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
   }
 
   "PlayerX plays the first move in the first cell, it" should "have a mark X in the first cell" in {
-    val game = new Game()
+    val game = Game()
 
     val newGame = game.playXPlay(0)
 
@@ -34,7 +34,19 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
 
   "PlayerO plays after PlayerX and " should "have O in the second cell " in {
     val game = Game()
-    val newGame = ???
+    val newGame: Game = game.playXPlay(0).play0Play(1)
+
+    newGame.rows should equal(List(List("X", "0", "3"), List("4", "5", "6"), List("7", "8", "9")))
+  }
+
+  "when PlayerX plays in an occupied cell, it "should "raise an error" in {
+    val game = Game()
+
+    val newGame = game.playXPlay(0).play0Play(0)
+
+    ???
+
+
   }
 
 }
