@@ -47,11 +47,11 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
     }
   }
 
-  "when PlayerX plays in the fourth cell" should "raise an error" in {
+  "when PlayerX plays in the fourth cell" should "have a mark X in the fourth cell" in {
     val game = Game()
 
-    assertThrows[RuntimeException] {
-      game.playXPlay(0).play0Play(0)
-    }
+    val newGame = game.playXPlay(4)
+
+    newGame.rows should equal(List(List("1", "2", "3"), List("X", "5", "6"), List("7", "8", "9")))
   }
 }
