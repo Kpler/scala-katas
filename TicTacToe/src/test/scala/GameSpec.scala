@@ -28,7 +28,6 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
     val game = new Game()
 
     game.playXPlay(0)
-
     game.rows should equal(List(List("X", "2", "3"), List("4", "5", "6"), List("7", "8", "9")))
   }
 
