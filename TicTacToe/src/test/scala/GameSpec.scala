@@ -54,4 +54,10 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
 
     newGame.rows should equal(List(List("1", "2", "3"), List("X", "5", "6"), List("7", "8", "9")))
   }
+
+  "play in fourth cell it " should "translate to row(1,1)" in {
+    val game = Game()
+    val rowIndex: Int = game.getIndex(cell=4)
+    rowIndex should be 1
+  }
 }

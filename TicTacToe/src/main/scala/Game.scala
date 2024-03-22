@@ -1,4 +1,8 @@
 case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5","6"), List("7", "8", "9"))) {
+  def getIndex(cell: Int): Int = {
+    1
+  }
+
 
   def playXPlay(cell: Int ): Game  = play(cell, "X")
 
