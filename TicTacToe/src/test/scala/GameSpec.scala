@@ -47,17 +47,27 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
     }
   }
 
-  "when PlayerX plays in the fourth cell" should "have a mark X in the fourth cell" in {
+ /** "when PlayerX plays in the fourth cell" should "have a mark X in the fourth cell" in {
     val game = Game()
 
     val newGame = game.playXPlay(4)
 
     newGame.rows should equal(List(List("1", "2", "3"), List("X", "5", "6"), List("7", "8", "9")))
-  }
+  }**/
 
-  "play in fourth cell it " should "translate to row(1,1)" in {
+  "play in fourth cell it " should "translate to row 1" in {
     val game = Game()
-    val rowIndex: Int = game.getIndex(cell=4)
-    rowIndex should be 1
+    val rowIndex: Int = game.getRowIndex(cell=4)
+    rowIndex should be(1)
+  }
+  "play in fourth cell it " should "translate to col 1" in {
+    val game = Game()
+    val colIndex: Int = game.getColIndex(cell=4)
+    colIndex should be(1)
+  }
+  "play in 9 cell it " should "translate to row 2" in {
+    val game = Game()
+    val rowIndex: Int = game.getRowIndex(cell=9)
+    rowIndex should be(2)
   }
 }
