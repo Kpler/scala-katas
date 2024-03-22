@@ -10,9 +10,9 @@ case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5",
   }
 
   def getColIndex(cell: Int): Int = {
-    if (cell == 1 || cell == 4 || cell == 7){
+    if (cell == 0 || cell == 3 || cell == 6){
       0
-    } else if (cell == 2 || cell == 5 || cell == 8){
+    } else if (cell == 1 || cell == 4 || cell == 7){
       1
     } else {
       2
