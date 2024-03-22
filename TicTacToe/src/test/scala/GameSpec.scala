@@ -27,7 +27,8 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
   "PlayerX plays the first move in the first cell, it" should "have a mark X in the first cell" in {
     val game = new Game()
 
-    game.playXPlay(0)
+    val newGame = game.playXPlay(0)
+
     game.rows should equal(List(List("X", "2", "3"), List("4", "5", "6"), List("7", "8", "9")))
   }
 
