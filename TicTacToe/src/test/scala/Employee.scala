@@ -11,7 +11,7 @@ class Example extends AnyFlatSpec with should.Matchers {
     employee1.getName() == employee2.getName() shouldEqual true
   }
 
-  "two instances of Employee" should "be not the same instance" in {
+  "two instances of Employee" should "be not the same" in {
     val employee1 = new Employee("Daniel", "Merkel")
     val employee2 = new Employee("Daniel", "Merkel")
     employee1.equals(employee2) shouldEqual false
@@ -25,7 +25,7 @@ class Example extends AnyFlatSpec with should.Matchers {
     employee1.getName() == employee2.getName() shouldEqual true
   }
 
-  "two instances of Employee2" should "be the same instance" in {
+  "two instances of Employee2" should "be the same" in {
     val employee1 = new Employee2("Daniel", "Merkel")
     val employee2 = new Employee2("Daniel", "Merkel")
     employee1.equals(employee2) shouldEqual true
