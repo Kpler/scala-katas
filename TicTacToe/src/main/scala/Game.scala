@@ -26,3 +26,9 @@ case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5",
 
 
 }
+
+object Game{
+  def FromBoard(rows: List[List[String]]): Game ={
+    new Game(rows)
+  }
+}
