@@ -82,4 +82,11 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
     val rowIndex: Int = game.getRowIndex(cell=8)
     rowIndex should be(2)
   }
+  "the game is over when all cell are taken" should "throwgh game over exception" in{
+      val game = Game()
+
+      assertThrows[RuntimeException] {
+        game.playXPlay(0).play0Play(1)
+      }
+  }
 }
