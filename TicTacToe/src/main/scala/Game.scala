@@ -13,7 +13,7 @@ case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5",
     val colIndex = getColIndex(cell)
 
     val row: List[String] = rows(rowIndex)
-    row(cell) match {
+    row(colIndex) match {
       case "X" | "0" => throw new RuntimeException("Cell already occupied")
       case _ =>
     }
