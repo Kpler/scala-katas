@@ -1,6 +1,6 @@
 case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5","6"), List("7", "8", "9"))) {
   def getRowIndex(cell: Int): Int = {
-    if (cell <4){
+    if (cell <3){
       0
     } else if (cell>3 && cell < 7){
       1
