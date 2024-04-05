@@ -88,4 +88,23 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
         Game.fromBoard(List(List("X","O","X"), List("O","X","O"), List("X", "O", "X")))
       }
   }
+
+  "when all fields in column 1 are taken by player `X`, it" should "throw game over exception" in {
+    assertThrows[GameOverException] {
+      Game.fromBoard(List(List("X", "2", "3"), List("X", "5", "6"), List("X", "8", "9")))
+    }
+  }
+
+  "when all fields in column 2 are taken by player `X`, it" should "throw game over exception" in {
+    assertThrows[GameOverException] {
+      Game.fromBoard(List(List("O", "O", "X"), List("X", "O", "X"), List("O", "O", "X")))
+//      Game.fromBoard(List(List("1", "X", "3"), List("4", "X", "6"), List("7", "X", "9")))
+    }
+  }
+
+  "when all fields in a column are taken by player `O`, it" should "throw game over exception" in {
+    assertThrows[GameOverException] {
+      Game.fromBoard(List(List("O","2","3"), List("O","5","6"), List("O", "8", "9")))
+    }
+  }
 }
