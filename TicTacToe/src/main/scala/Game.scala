@@ -18,7 +18,7 @@ case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5",
       case _ =>
     }
     val rowUpdated: List[String] = row.updated(colIndex, playerName)
-    Game(rows.updated(rowIndex, rowUpdated))
+    Game.fromBoard(rows.updated(rowIndex, rowUpdated))
   }
 
   val playerX: Player = Player("X")
@@ -28,7 +28,14 @@ case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5",
 }
 
 object Game{
-  def FromBoard(rows: List[List[String]]): Game ={
-    new Game(rows)
+  def fromBoard(rows: List[List[String]]): Game ={
+
+    rows.foreach(row => {
+      row.foreach(col => {
+        if (col != "X" && col != "O")
+          return new Game(rows)
+      })
+    })
+    throw new RuntimeException("Game over!")
   }
 }
