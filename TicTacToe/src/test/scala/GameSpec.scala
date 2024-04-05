@@ -42,7 +42,7 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
   "when PlayerX plays in an occupied cell, it "should "raise an error" in {
     val game = Game()
 
-    assertThrows[RuntimeException] {
+    assertThrows[CellOccupiedException] {
       game.playXPlay(0).play0Play(0)
     }
   }
@@ -84,7 +84,7 @@ class GameSpec extends AnyFlatSpec with should.Matchers {
   }
   "the game is over when all cell are taken" should "throw game over exception" in{
 
-      assertThrows[RuntimeException] {
+      assertThrows[GameOverException] {
         Game.fromBoard(List(List("X","O","X"), List("O","X","O"), List("X", "O", "X")))
       }
   }

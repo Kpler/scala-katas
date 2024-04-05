@@ -1,0 +1,3 @@
+class CellOccupiedException extends RuntimeException {
+
+}

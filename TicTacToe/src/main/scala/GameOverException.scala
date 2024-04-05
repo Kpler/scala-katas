@@ -1,0 +1,3 @@
+class GameOverException extends RuntimeException {
+
+}

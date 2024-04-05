@@ -14,7 +14,7 @@ case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5",
 
     val row: List[String] = rows(rowIndex)
     row(colIndex) match {
-      case "X" | "0" => throw new RuntimeException("Cell already occupied")
+      case "X" | "0" => throw new CellOccupiedException()
       case _ =>
     }
     val rowUpdated: List[String] = row.updated(colIndex, playerName)
@@ -23,8 +23,6 @@ case class Game(rows: List[List[String]] = List(List("1","2","3"), List("4","5",
 
   val playerX: Player = Player("X")
   val playerO: Player = Player("O")
-
-
 }
 
 object Game{
@@ -36,6 +34,6 @@ object Game{
           return new Game(rows)
       })
     })
-    throw new RuntimeException("Game over!")
+    throw new GameOverException()
   }
 }
