@@ -4,7 +4,7 @@ project/project
 */project/target
 */project/.sbtserver.lock
 project/.sbtserver.lock
-project/metals.sbt
+metals.sbt
 *.tmp
 *.swp
 *.log
