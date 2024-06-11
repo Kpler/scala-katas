@@ -1,43 +1,20 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.234.0/containers/alpine
 {
-  "name": "Alpine",
-  "build": {
-    "dockerfile": "Dockerfile",
-    // Update 'VARIANT' to pick an Alpine version: 3.12, 3.13, 3.14, 3.15
-    "args": {
-      "VSCODE_REMOTEUSER": "vscode",
-      "VARIANT": "3.15",
-    }
-  },
-
-  // Set *default* container specific settings.json values on container create.
-  "settings": {
-    "terminal.integrated.profiles.linux": {
-      "zsh": {
-        "path": "/bin/zsh"
-      }
-    },
-    "terminal.integrated.defaultProfile.linux": "zsh",
-  },
-
-  // Add the IDs of extensions you want installed when the container is created.
-  // Note that some extensions may not work in Alpine Linux. See https://aka.ms/vscode-remote/linux.
-  "extensions": ["scalameta.metals"],
-
-  // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "vscode",
+  "image": "sbtscala/scala-sbt:eclipse-temurin-jammy-22_36_1.10.0_3.3.3",
 
   "customizations": {
     "vscode": {
-      "settings": {
-        "files.exclude": {
-          ".metals": true,
-          "**/.bsp": true,
-          "**/target": true,
-          "**/project/project": true
+        "extensions": [
+            "scala-lang.scala",
+            "scalameta.metals"
+        ],
+        "settings": {
+            "files.exclude": {
+                ".metals": true,
+                "**/.bsp": true,
+                "**/target": true,
+                "**/project/project": true
+            }
         }
-      }
     }
   }
 }
