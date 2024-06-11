@@ -4,8 +4,9 @@
   "customizations": {
     "vscode": {
         "extensions": [
-            "scala-lang.scala",
-            "scalameta.metals"
+          "scala-lang.scala",
+          "scalameta.metals",
+          "ms-vsliveshare.vsliveshare"
         ],
         "settings": {
             "files.exclude": {
