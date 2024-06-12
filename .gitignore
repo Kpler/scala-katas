@@ -1,10 +1,12 @@
 application.dev.conf
 logs
 project/project
+*/project/project
 */project/target
 */project/.sbtserver.lock
 project/.sbtserver.lock
 project/metals.sbt
+*/project/metals.sbt
 *.tmp
 *.swp
 *.log

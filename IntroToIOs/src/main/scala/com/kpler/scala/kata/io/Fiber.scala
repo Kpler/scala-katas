@@ -15,5 +15,17 @@ object Fiber {
    - Cancelled()
    hint: have a look to 'embed' in Outcome
    */
-  def parIOs[A, B](ioa: IO[A], iob: IO[B]): IO[(A, B)] = ???
+  def parIOs1[A, B](ioa: IO[A], iob: IO[B]): IO[(A, B)] = for {
+    a <- ioa
+    b <- iob
+  } yield a -> b
+
+  def parIOs[A, B](ioa: IO[A], iob: IO[B]): IO[(A, B)] = for {
+    fiberOne <- ioa.start
+    fiberTwo <- iob.start
+    a <- fiberOne.join
+    b <- fiberTwo.join
+    outA <- a.embed(IO.raiseError(new RuntimeException()))
+    outB <- b.embed(IO.raiseError(new RuntimeException()))
+  } yield outA -> outB
 }
