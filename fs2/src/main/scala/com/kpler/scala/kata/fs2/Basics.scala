@@ -38,18 +38,25 @@ object Basics {
    */
   def readProductsFromCsv(file: Path): Stream[IO, KplerProduct] = ???
 
+  def productToProductWithAliases(
+    productIdToAliases: Int => IO[List[String]],
+  )(
+    product: KplerProduct,
+  ): IO[KplerProductWithAliases] = ???
   /*
    Write the function that return a Stream of KplerProduct with their aliases
    The products are read from the csv file, as before
    The aliases are supplied by the productIdToAliases function that maps a product id to a list of aliases
    Note that productIdToAliases is effectful (ie return an IO)
    7 minutes
-   Hints: reuse readProductsFromCsv, have a look at the functions in fs2.Stream that look like map but deal with effects
+   Hints:
+    - Implement productToProductWithAliases first and finds a means to combine it with readProductsFromCs.
+    - Have a look at the functions in fs2.Stream that look like map but deal with effects
    */
   def mapProductToAliases(
     file: Path,
     productIdToAliases: Int => IO[List[String]],
-  ): Stream[IO, (KplerProduct, List[String])] = ???
+  ): Stream[IO, KplerProductWithAliases] = ???
 
   def indexFilePath(inTheSameDir: Path)(filename: String): Option[Path] = inTheSameDir.parent.map(_ / filename)
 
