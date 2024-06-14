@@ -74,7 +74,7 @@ class BasicsSpec extends AnyFlatSpec with GivenWhenThen with should.Matchers {
     val productToAliases: Int => IO[List[String]] =
       productId =>
         IO.pure(
-          (for (i <- 0 to 2) yield s"alias $i of product $productId").toList,
+          (for (i <- 0 until 2) yield s"alias $i of product $productId").toList,
         )
 
     When("mapProductToAliases is called")
@@ -99,7 +99,7 @@ class BasicsSpec extends AnyFlatSpec with GivenWhenThen with should.Matchers {
     val filePath = Path(".") / "src" / "test" / "resources" / "list-of-files.txt"
 
     When("concatFiles is called")
-    val content = concatFiles(filePath)
+    val content = concatFiles(filePath).compile.toList.unsafeRunSync()
 
     Then("the resulting compiled stream should contain the content of with-3-lines.txt and with-4-lines.txt")
     content should be(
