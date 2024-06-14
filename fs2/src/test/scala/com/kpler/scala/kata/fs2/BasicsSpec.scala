@@ -87,8 +87,8 @@ class BasicsSpec extends AnyFlatSpec with GivenWhenThen with should.Matchers {
     """.stripMargin)
     productsWithAliases.take(2).compile.toList.unsafeRunSync() should be(
       List(
-        (KplerProduct(1000, "76 Gasoline"), List("alias 0 of product 1000", "alias 1 of product 1000")),
-        (KplerProduct(1002, "80 Gasoline"), List("alias 0 of product 1002", "alias 1 of product 1002")),
+        KplerProductWithAliases(1000, "76 Gasoline", List("alias 0 of product 1000", "alias 1 of product 1000")),
+        KplerProductWithAliases(1002, "80 Gasoline", List("alias 0 of product 1002", "alias 1 of product 1002")),
       ),
     )
   }
