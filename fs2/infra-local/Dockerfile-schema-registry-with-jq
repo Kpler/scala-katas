@@ -1,0 +1,8 @@
+FROM confluentinc/cp-schema-registry:6.2.0
+
+USER root
+RUN python -m pip install --upgrade pip
+RUN python -m pip install avro-python3==1.10.2
+RUN python -m pip install avro-json-serializer==1.0.4
+RUN yum -y install jq
+USER appuser
