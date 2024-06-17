@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+
+<configuration>
+    <import class="ch.qos.logback.classic.encoder.JsonEncoder" />
+    <import class="ch.qos.logback.core.ConsoleAppender" />
+
+    <appender name="flat" class="ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{yyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <logger name="io.confluent.kafka" level="${LOG_LEVEL:-INFO}" />
+    <logger name="org.apache.kafka" level="${LOG_LEVEL:-INFO}" />
+    <root level="${LOG_LEVEL:-INFO}">
+        <appender-ref ref="flat" />
+    </root>
+</configuration>
