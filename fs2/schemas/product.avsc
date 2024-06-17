@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "KplerProduct",
+  "namespace": "com.kpler.scala.kata.fs2",
+  "fields": [
+    {
+      "name": "id",
+      "type": "int"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    }
+  ]
+}
