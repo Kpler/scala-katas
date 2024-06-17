@@ -1,0 +1,113 @@
+version: '3.8'
+services:
+  # reachable on 9092 from the host and on 29092 from inside docker compose
+  kafka:
+    image: confluentinc/cp-kafka:7.5.1
+    ports:
+      - '9092:9092'
+    expose:
+      - '19092'
+      - '29092'
+    environment:
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,BROKER:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: BROKER
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENERS: CONTROLLER://:19092,BROKER://:29092,EXTERNAL://:9092
+      KAFKA_ADVERTISED_LISTENERS: BROKER://kafka:29092,EXTERNAL://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: '1'
+      KAFKA_MIN_INSYNC_REPLICAS: '1'
+      KAFKA_PROCESS_ROLES: 'controller,broker'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@localhost:19092'
+      KAFKA_NODE_ID: 1
+      KAFKA_BROKER_ID: 1
+      CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:6.2.0
+    depends_on:
+      - kafka
+    ports:
+      - "8081:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:29092
+      SCHEMA_REGISTRY_SCHEMA_COMPATIBILITY_LEVEL: forward
+
+  init-kafka:
+    image: confluentinc/cp-kafka:7.5.1
+    depends_on:
+      - kafka
+    entrypoint: [ '/bin/sh', '-c' ]
+    command: |
+      "
+      # blocks until kafka is reachable
+      kafka-topics --bootstrap-server kafka:29092 --list
+
+      echo -e 'Creating kafka topics'
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic kata-fs2.input --replication-factor 1 --partitions 1
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic kata-fs2.output --replication-factor 1 --partitions 1
+
+      echo -e 'Successfully created the following topics:'
+      kafka-topics --bootstrap-server kafka:29092 --list
+      "
+
+  kafka-ui:
+    profiles: [debug]
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "9000:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      #DYNAMIC_CONFIG_ENABLED: true
+
+
+  produce-input-messages:
+    profiles: [debug]
+    build:
+      context: infra-local
+      dockerfile: Dockerfile-schema-registry-with-jq
+    depends_on:
+      - schema-registry
+      - init-kafka
+    entrypoint: [ '/bin/sh', '-c' ]
+    command: |
+      "
+      chmod u+x /data/send_avro_message.sh
+      chmod u+x /data/key_value.sh
+      /data/send_avro_message.sh /data/products.json
+      "
+    environment:
+      KEY_FIELD: id
+      SCHEMA_FILE: /schemas/product.avsc
+      TOPIC: kata-fs2.input
+    volumes:
+      - type: bind
+        source: infra-local/docker-volumes/producer
+        target: /data
+      - type: bind
+        source: schemas/product.avsc
+        target: /schemas/product.avsc
+
+  consume-input-messages:
+    profiles: [debug]
+    image: confluentinc/cp-schema-registry:6.2.0
+    depends_on:
+      - schema-registry
+    entrypoint: [ '/bin/sh', '-c' ]
+    command: |
+      "
+      echo -e 'consume messages from the "kata-fs2.input" topic'
+      kafka-avro-console-consumer --bootstrap-server kafka:29092  --topic kata-fs2.input --property schema.registry.url=http://schema-registry:8081 --property print.key=true --key-deserializer org.apache.kafka.common.serialization.IntegerDeserializer
+      "
+  consume-output-messages:
+    profiles: [debug]
+    image: confluentinc/cp-schema-registry:6.2.0
+    depends_on:
+      - schema-registry
+    entrypoint: [ '/bin/sh', '-c' ]
+    command: |
+      "
+      echo -e 'consume messages from the "kata-fs2.output" topic'
+      kafka-avro-console-consumer --bootstrap-server kafka:29092  --topic kata-fs2.output --property schema.registry.url=http://schema-registry:8081 --property print.key=true --key-deserializer org.apache.kafka.common.serialization.IntegerDeserializer
+      "
