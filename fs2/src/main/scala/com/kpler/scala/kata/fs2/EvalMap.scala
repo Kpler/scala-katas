@@ -1,6 +1,7 @@
 package com.kpler.scala.kata.fs2
 
 import cats.effect.IO
+import com.kpler.scala.kata.fs2.Basics.evenNumbersStream
 import fs2.Stream
 
 object EvalMap {
@@ -12,7 +13,8 @@ object EvalMap {
 
    5 minutes
    */
-  def computeSequential(longRunningComputation: Int => IO[Int]): Stream[IO, Int] = ???
+  def computeSequential(longRunningComputation: Int => IO[Int]): Stream[IO, Int] =
+    evenNumbersStream.evalMap(longRunningComputation).takeWhile(_ <= 100)
 
   /*
    The previous function was running sequentially over the stream and might take quite long to collect the results.
@@ -22,5 +24,6 @@ object EvalMap {
 
    3 minutes
    */
-  def computeParallel(longRunningComputation: Int => IO[Int]): Stream[IO, Int] = ???
+  def computeParallel(longRunningComputation: Int => IO[Int]): Stream[IO, Int] =
+    evenNumbersStream.parEvalMap(2)(longRunningComputation).takeWhile(_ <= 100)
 }
