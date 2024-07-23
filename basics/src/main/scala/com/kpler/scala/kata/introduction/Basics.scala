@@ -17,5 +17,14 @@ object Basics {
     println(lst(1))
     val newList = lst.updated(1, 5)
     println(newList)
+
+    println(newList.head)
+    println(newList.tail)
+    newList match
+      case first :: rest =>
+        println(first)
+        println(rest)
+      case Nil => println("list is empty")
+
   }
 }
