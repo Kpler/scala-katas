@@ -13,3 +13,4 @@ if __name__ == '__main__':
     print(lst)
     print(lst[1])
     lst[1] = 5
+    print(lst)
