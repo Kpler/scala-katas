@@ -11,5 +11,8 @@ object Basics {
     var a = 3
     println(a)
     a = 2
+
+    val lst = (for i <- 0 until 10 yield i).toList
+    println(lst)
   }
 }
