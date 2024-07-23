@@ -9,5 +9,5 @@ if __name__ == '__main__':
     print(a)
     a = 2
 
-    lst = [i for i in range(10)]
+    lst = [1, 2, 3, 4]
     print(lst)

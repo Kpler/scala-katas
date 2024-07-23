@@ -12,7 +12,7 @@ object Basics {
     println(a)
     a = 2
 
-    val lst = (for i <- 0 until 10 yield i).toList
+    val lst = List(1, 2, 3, 4)
     println(lst)
   }
 }
