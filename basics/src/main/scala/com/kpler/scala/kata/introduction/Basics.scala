@@ -12,7 +12,8 @@ object Basics {
     println(a)
     a = 2
 
-    val lst = List(1, 2, 3, 4)
+    val lst = List(1 ,2, 3 ,4)
     println(lst)
+    println(lst(1))
   }
 }
