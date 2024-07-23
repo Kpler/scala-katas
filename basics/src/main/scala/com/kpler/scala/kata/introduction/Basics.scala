@@ -15,5 +15,6 @@ object Basics {
     val lst = List(1 ,2, 3 ,4)
     println(lst)
     println(lst(1))
+    lst(1) = 5
   }
 }
