@@ -7,5 +7,9 @@ object Basics {
 
   @main def myProgram(args: String*): Unit = {
     println(sum(2, 3))
+
+    val a = 3
+    println(a)
+    a = 2
   }
 }
