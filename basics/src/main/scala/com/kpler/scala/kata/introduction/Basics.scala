@@ -5,6 +5,12 @@ object Basics {
   private def sum(a: Int, b: Int): Int = a + b
 
 
+  def distribution(lst: List[Int]): Map[Int, Int] = {
+    val toReturn = Map[Int, Int]()
+    for (i <- lst) toReturn.updated(i, toReturn.getOrElse(i, 0) + 1)
+    toReturn
+  }
+
   @main def myProgram(args: String*): Unit = {
     println(sum(2, 3))
 
@@ -26,5 +32,7 @@ object Basics {
         println(rest)
       case Nil => println("list is empty")
 
+    val toDistrib = List(5, 2, 3, 2, 3, 5, 5, 3, 3, 6)
+    println(distribution(toDistrib))
   }
 }
