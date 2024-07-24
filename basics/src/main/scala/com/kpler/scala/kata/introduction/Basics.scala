@@ -15,6 +15,27 @@ object Basics {
     internal(lst, Map.empty)
   }
 
+  def insertSort(lst: List[Int]): List[Int] = {
+
+    /*
+     Insert value into the sorted list sorted and return the resulting list
+
+     hints: use recursion and pattern matching on lst
+     */
+    def insert(value: Int, sorted: List[Int]): List[Int] = ???
+
+    /*
+     Insert every elements from notSorted into sorted and return the resulting
+
+     hints:
+     - insert the first value of notSorted into sorted then use recursion to insert the rest
+     - use pattern matching again
+    */
+    def internal(sorted: List[Int], notSorted: List[Int]): List[Int] = ???
+
+    lst
+  }
+
   @main def myProgram(args: String*): Unit = {
     println(sum(2, 3))
 
@@ -38,5 +59,6 @@ object Basics {
 
     val toDistrib = List(5, 2, 3, 2, 3, 5, 5, 3, 3, 6)
     println(distribution(toDistrib))
+    println(insertSort(toDistrib))
   }
 }
