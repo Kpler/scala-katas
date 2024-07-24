@@ -6,8 +6,8 @@ object Basics {
 
 
   def distribution(lst: List[Int]): Map[Int, Int] = {
-    val toReturn = Map[Int, Int]()
-    for (i <- lst) toReturn.updated(i, toReturn.getOrElse(i, 0) + 1)
+    var toReturn = Map[Int, Int]()
+    for (i <- lst) toReturn = toReturn.updated(i, toReturn.getOrElse(i, 0) + 1)
     toReturn
   }
 
