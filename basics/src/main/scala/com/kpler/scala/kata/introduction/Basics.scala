@@ -6,9 +6,13 @@ object Basics {
 
 
   def distribution(lst: List[Int]): Map[Int, Int] = {
-    var toReturn = Map[Int, Int]()
-    for (i <- lst) toReturn = toReturn.updated(i, toReturn.getOrElse(i, 0) + 1)
-    toReturn
+
+    def internal(currentList: List[Int], distrib: Map[Int, Int]): Map[Int, Int] = currentList match {
+      case first :: rest => internal(rest, distrib.updated(first, distrib.getOrElse(first, 0) + 1))
+      case Nil => distrib
+    }
+
+    internal(lst, Map.empty)
   }
 
   @main def myProgram(args: String*): Unit = {
