@@ -36,6 +36,24 @@ object Basics {
     lst
   }
 
+  def concat[T](firstList: List[T], secondList: List[T]): List[T] = firstList ::: secondList
+
+  /*
+   return a list with every element of lst that satisfies the predicate
+  */
+  def filter[T](lst: List[T], predicate: T => Boolean): List[T] = ???
+
+  /*
+   apply the function mapper to every element of lst and return the resulting list
+  */
+  def map[A, B](lst: List[A], mapper: A => B): List[B] = ???
+
+  /*
+   like map but the mapper function return a List[B] and not a B
+   The result is still a List[B]
+  */
+  def flatMap[A, B](lst: List[A], mapper: A => List[B]): List[B] = ???
+
   @main def myProgram(args: String*): Unit = {
     println(sum(2, 3))
 
@@ -57,8 +75,12 @@ object Basics {
         println(rest)
       case Nil => println("list is empty")
 
-    val toDistrib = List(5, 2, 3, 2, 3, 5, 5, 3, 3, 6)
+    val toDistrib: List[Int] = List(5, 2, 3, 2, 3, 5, 5, 3, 3, 6)
     println(distribution(toDistrib))
     println(insertSort(toDistrib))
+
+    val lstOfStrings: List[String] = List("one", "two", "three")
+    val funcSum: (Int, Int) => Int = sum
+
   }
 }
