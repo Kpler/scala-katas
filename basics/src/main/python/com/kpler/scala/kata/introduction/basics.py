@@ -36,3 +36,5 @@ if __name__ == '__main__':
     print(distribution(toDistrib))
     insert_sort(toDistrib)
     print(toDistrib)
+    list_of_tuples = [(i, j) for i in range(5) for j in range(6)]
+    print(list_of_tuples)
