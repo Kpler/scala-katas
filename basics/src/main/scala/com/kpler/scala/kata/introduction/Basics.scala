@@ -1,5 +1,7 @@
 package com.kpler.scala.kata.introduction
 
+import scala.annotation.tailrec
+
 object Basics {
 
   private def sum(a: Int, b: Int): Int = a + b
@@ -7,6 +9,7 @@ object Basics {
 
   def distribution(lst: List[Int]): Map[Int, Int] = {
 
+    @tailrec
     def internal(currentList: List[Int], distrib: Map[Int, Int]): Map[Int, Int] = currentList match {
       case first :: rest => internal(rest, distrib.updated(first, distrib.getOrElse(first, 0) + 1))
       case Nil => distrib
@@ -25,7 +28,7 @@ object Basics {
     def insert(value: Int, sorted: List[Int]): List[Int] = ???
 
     /*
-     Insert every elements from notSorted into sorted and return the resulting
+     Insert every element from 'notSorted' into 'sorted' and return the resulting list
 
      hints:
      - insert the first value of notSorted into sorted then use recursion to insert the rest
@@ -82,5 +85,10 @@ object Basics {
     val lstOfStrings: List[String] = List("one", "two", "three")
     val funcSum: (Int, Int) => Int = sum
 
+    val listOfTuples = for {
+      i <- 0 until 5
+      j <- 0 until 6 if j % 2 == 0
+    } yield (i, j)
+    println(listOfTuples.toList)
   }
 }
