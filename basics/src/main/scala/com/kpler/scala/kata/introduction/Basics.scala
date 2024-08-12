@@ -24,6 +24,8 @@ object Basics {
      Insert value into the sorted list sorted and return the resulting list
 
      hints: use recursion and pattern matching on lst
+
+     time: 8 minutes
      */
     def insert(value: Int, sorted: List[Int]): List[Int] = ???
 
@@ -33,6 +35,8 @@ object Basics {
      hints:
      - insert the first value of notSorted into sorted then use recursion to insert the rest
      - use pattern matching again
+
+     time: 7 minutes
     */
     def internal(sorted: List[Int], notSorted: List[Int]): List[Int] = ???
 
@@ -43,17 +47,23 @@ object Basics {
 
   /*
    return a list with every element of lst that satisfies the predicate
+
+   time: 5 minutes
   */
   def filter[T](lst: List[T], predicate: T => Boolean): List[T] = ???
 
   /*
    apply the function mapper to every element of lst and return the resulting list
+
+   time: 4 minutes
   */
   def map[A, B](lst: List[A], mapper: A => B): List[B] = ???
 
   /*
    like map but the mapper function return a List[B] and not a B
    The result is still a List[B]
+
+   time: 7 minutes
   */
   def flatMap[A, B](lst: List[A], mapper: A => List[B]): List[B] = ???
 
