@@ -6,7 +6,6 @@ object Basics {
 
   private def sum(a: Int, b: Int): Int = a + b
 
-
   def distribution(lst: List[Int]): Map[Int, Int] = {
 
     @tailrec
@@ -27,7 +26,11 @@ object Basics {
 
      time: 8 minutes
      */
-    def insert(value: Int, sorted: List[Int]): List[Int] = ???
+    def insert(value: Int, sorted: List[Int]): List[Int] = sorted match {
+      case first :: rest if value < first => value :: first :: rest
+      case first :: rest => first :: insert(value, rest)
+      case Nil => List(value)
+    }
 
     /*
      Insert every element from 'notSorted' into 'sorted' and return the resulting list
@@ -37,10 +40,14 @@ object Basics {
      - use pattern matching again
 
      time: 7 minutes
-    */
-    def internal(sorted: List[Int], notSorted: List[Int]): List[Int] = ???
+     */
+    @tailrec
+    def internal(sorted: List[Int], notSorted: List[Int]): List[Int] = notSorted match {
+      case first :: rest => internal(insert(first, sorted), rest)
+      case Nil => sorted
+    }
 
-    lst
+    internal(List.empty, lst)
   }
 
   def concat[T](firstList: List[T], secondList: List[T]): List[T] = firstList ::: secondList
@@ -49,14 +56,14 @@ object Basics {
    return a list with every element of lst that satisfies the predicate
 
    time: 5 minutes
-  */
+   */
   def filter[T](lst: List[T], predicate: T => Boolean): List[T] = ???
 
   /*
    apply the function mapper to every element of lst and return the resulting list
 
    time: 4 minutes
-  */
+   */
   def map[A, B](lst: List[A], mapper: A => B): List[B] = ???
 
   /*
@@ -64,7 +71,7 @@ object Basics {
    The result is still a List[B]
 
    time: 7 minutes
-  */
+   */
   def flatMap[A, B](lst: List[A], mapper: A => List[B]): List[B] = ???
 
   @main def myProgram(args: String*): Unit = {
