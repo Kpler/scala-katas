@@ -34,6 +34,14 @@ Here is the list of the available Scala Katas
 - Scala 3 'using' and 'given'
 - Scala 3 'extension'
 
+## Monocle
+- Level: Intermediate
+- Directory: [monocle](https://github.com/Kpler/scala-katas/tree/main/monocle)
+- Presentation: [slides](https://docs.google.com/presentation/d/15GeYoIK0l8ONnShWMca-269bhbhnFGvDQQvZBct5GN0/edit#slide=id.p)
+
+### Content
+- Case classes
+- Use Monocle to avoid boilerplate code when updating one Case class field in a tree-like structure
 
 ## The type class pattern
 - Level: Intermediate/Advanced
