@@ -69,13 +69,25 @@ Here is the list of the available Scala Katas
   - [slides part 1](https://docs.google.com/presentation/d/1wQhYTThWA-lqKvXxD9PUr2xqmC01sw_ulN1vEAR-x4k/edit#slide=id.p)
   - [slides part 2](https://docs.google.com/presentation/d/1QJI0bG046-znxKhdGZbAYWH1NfQZs3C3TMiyCdT-zts/edit#slide=id.p)
 
-
 ### Content
 - Rules of functional programming
 - Effect types
 - The Cats effect IO type 
 - Fibers
 - Parallelization
+
+## FS2
+- Level: Advanced
+- Directory: [fs2](https://github.com/Kpler/scala-katas/tree/main/fs2)
+- Presentation:
+  - [slides part 1](https://docs.google.com/presentation/d/1X3I6yLPuDF4-3FHaLIFJe1rx6uVmjSB2ghrd0pthIMo/edit#slide=id.p)
+  - [slides part 2](https://docs.google.com/presentation/d/1bVliyzBBqa8nn1qddqIHpauAp-3Rus24X-aJpWi5mk0/edit#slide=id.p)
+
+### Content
+- Streaming files with fs2
+- Streaming a Kafka topic with fs2
+- Parallelization
+- Fs2 pipes
 
 
 # Run with GitHub codespace
