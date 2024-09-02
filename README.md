@@ -34,6 +34,16 @@ Here is the list of the available Scala Katas
 - Scala 3 'using' and 'given'
 - Scala 3 'extension'
 
+
+## The type class pattern
+- Level: Intermediate/Advanced
+- Directory: [typeclass-pattern](https://github.com/Kpler/scala-katas/tree/main/typeclass-pattern)
+- Presentation: [slides](https://docs.google.com/presentation/d/13-DJGGcmfhmpq0iWRju294S90uxcDWNexxbZMJqGWEY/edit#slide=id.p)
+
+### Content
+- Presentation of the 'type class' pattern
+- Implement a 'CartesianProduct' typeclass 
+
 # Run with GitHub codespace
 
 [Create a codespace](https://github.com/codespaces/new?machine=basicLinux32gb&repo=508246800&ref=codespace&location=WestEurope&devcontainer_path=.devcontainer%2Fdevcontainer.json)
