@@ -62,6 +62,22 @@ Here is the list of the available Scala Katas
 - map and the Functor type class
 - contramap and the Contravariant type class
 
+## Introduction to IOs
+- Level: Advanced
+- Directory: [IntroToIOs](https://github.com/Kpler/scala-katas/tree/main/IntroToIOs)
+- Presentation: 
+  - [slides part 1](https://docs.google.com/presentation/d/1wQhYTThWA-lqKvXxD9PUr2xqmC01sw_ulN1vEAR-x4k/edit#slide=id.p)
+  - [slides part 2](https://docs.google.com/presentation/d/1QJI0bG046-znxKhdGZbAYWH1NfQZs3C3TMiyCdT-zts/edit#slide=id.p)
+
+
+### Content
+- Rules of functional programming
+- Effect types
+- The Cats effect IO type 
+- Fibers
+- Parallelization
+
+
 # Run with GitHub codespace
 
 [Create a codespace](https://github.com/codespaces/new?machine=basicLinux32gb&repo=508246800&ref=codespace&location=WestEurope&devcontainer_path=.devcontainer%2Fdevcontainer.json)
