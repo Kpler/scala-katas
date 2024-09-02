@@ -1,0 +1,81 @@
+{
+  "header": {
+    "extractedDate": "2023-12-04",
+    "sourceName": "net.dcldownload",
+    "sourceFile": "s3://kp-prod-common-maritimedata-ingestion-us/arkiver/net.dcldownload/year=2023/month=12/day=04/net.dcldownload--20231204140006.zip",
+    "uuid": "801310e9-8c5a-407f-9a14-6b1888e8431e",
+    "reportedDate": "2023-12-04",
+    "dataType": "usbol_import"
+  },
+  "data": {
+    "masterBOLNumber": "CRNV33M120300018",
+    "importDate": "2023-12-04",
+    "estimatedArrivalDate": "2023-12-03",
+    "verified": true,
+    "visible": true,
+    "vessel": {
+      "name": "CARNIVAL HORIZON",
+      "manualEdit": {
+        "id": 42,
+        "editedBy": "68007b16-82d9-4b0d-8707-be48505b84aa",
+        "editedAt": "2023-11-10T15:48:27.414951358Z"
+      },
+      "matcherResult": null
+    },
+    "consignee": {
+      "name": "NATIONAL FUNERAL HOMES",
+      "manualEdit": null,
+      "matcherResult": {
+        "id": 3529,
+        "name": "Petroleum Company of Trinidad and Tobago Limited",
+        "confidence": 39.20324
+      }
+    },
+    "shipper": {
+      "name": "CARNIVAL CRUISE LINES",
+      "manualEdit": null,
+      "matcherResult": {
+        "id": 16678,
+        "name": "Carnival Corporation",
+        "confidence": 42.593407
+      }
+    },
+    "notifyParty": null,
+    "origin": {
+      "name": "99900",
+      "manualEdit": null,
+      "matcherResult": null
+    },
+    "destination": {
+      "name": "5201",
+      "manualEdit": {
+        "id": 86,
+        "editedBy": "68007b16-82d9-4b0d-8707-be48505b84aa",
+        "editedAt": "2023-11-10T15:48:27.414951358Z"
+      },
+      "matcherResult": {
+        "id": 1360,
+        "name": "Miami",
+        "confidence": 3.6331582
+      }
+    },
+    "products": [
+      {
+        "name": "DECEASED PERSON, MADE IN USA, $1.00          GENERAL NOTE 3 (I) (E); 1 PCS",
+        "manualEdit": {
+          "id": 23,
+          "quantities": [
+            {
+              "value": "50.0",
+              "unit": "BBL"
+            }
+          ],
+          "editedBy": "68007b16-82d9-4b0d-8707-be48505b84aa",
+          "editedAt": "2023-11-10T15:48:27.414951358Z"
+        },
+        "matcherResult": null
+      }
+    ],
+    "raw": "{\"bolIdentifier\":{\"masterBOLNumber\":\"CRNV33M120300018\",\"houseBOLNumber\":\"\",\"subHouseBOLNUmber\":\"\",\"voyageNumber\":\"M1203\",\"billTypeCode\":\"02\",\"manifestNumber\":\"331200\",\"tradeUpdateDate\":\"20231203\",\"runDate\":\"20231204\",\"filler\":\"\"},\"vesselInfo\":{\"carrierCode\":\"CRNV\",\"vesselCountryCode\":\"PA\",\"vesselName\":\"CARNIVAL HORIZON\",\"portOfUnlading\":\"5201\",\"estimatedArrivalDate\":\"20231203\",\"foreignPortOfLadingQualifier\":\"K\",\"foreignPortOfLading\":\"99900\",\"manifestQuantity\":1,\"manifestUnit\":\"PCS\",\"weight\":80,\"weightUnit\":\"KG\",\"measurement\":0,\"measurementUnit\":\"CM\",\"recordStatusIndicator\":\"N\",\"placeOfReceipt\":\"MIAMI, FL\",\"portOfDestination\":\"\",\"foreignPortOfDestinationQualifier\":\"\",\"foreignPortOfDestination\":\"\",\"conveyanceIDQualifier\":\"08\",\"conveyanceID\":\"CARNIVAL HORIZON\",\"inBondEntryType\":\"\",\"modeOfTransportation\":\"11\",\"secondaryNotifyParty1\":\"\",\"secondaryNotifyParty2\":\"\",\"secondaryNotifyParty3\":\"\",\"secondaryNotifyParty4\":\"\",\"secondaryNotifyParty5\":\"\",\"secondaryNotifyParty6\":\"\",\"secondaryNotifyParty7\":\"\",\"secondaryNotifyParty8\":\"\",\"secondaryNotifyParty9\":\"\",\"secondaryNotifyParty10\":\"\",\"actualArrivalDate\":\"20231203\",\"filler\":\"\"},\"containers\":[{\"containerNumber\":\"NC\",\"sealNumber1\":\"\",\"sealNumber2\":\"\",\"equipmentDescriptionCode\":\"NC\",\"containerLength\":\"00000\",\"containerHeight\":\"00000000\",\"containerWidth\":\"00000000\",\"containerType\":\"\",\"loadStatus\":\"L\",\"typeOfService\":\"PP\",\"cargoes\":[{\"product\":{\"containerNumber\":\"NC\",\"descriptionSequenceNumber\":1,\"pieceCount\":1,\"descriptionText\":\"DECEASED PERSON, MADE IN USA, $1.00          GENERAL NOTE 3 (I) (E); 1 PCS\",\"filler\":\"\"},\"hazmatCargo\":[],\"hazmatCargoClassification\":[],\"marksAndNUmber\":{\"containerNumber\":\"NC\",\"marksAndNumber1\":\"GUEST SERVICES DEPT.\",\"marksAndNumber2\":\"\",\"marksAndNumber3\":\"\",\"marksAndNumber4\":\"\",\"marksAndNumber5\":\"\",\"marksAndNumber6\":\"\",\"marksAndNumber7\":\"\",\"marksAndNumber8\":\"\",\"filler\":\"\"}}]}],\"shipper\":{\"shipperName\":\"CARNIVAL CRUISE LINES\",\"shipperAddressLine1\":\"3655 NW 87TH AVENUE\",\"shipperAddressLine2\":\"MIAMI, FL  33178  US\",\"shipperAddressLine3\":\"\",\"shipperAddressLine4\":\"\",\"city\":\"\",\"state\":\"\",\"zipCode\":\"\",\"countryCode\":\"\",\"contactName\":\"\",\"contactNumberQualifier\":\"\",\"commNumber\":\"\",\"filler\":\"\"},\"consignee\":{\"consigneeName\":\"NATIONAL FUNERAL HOMES\",\"consigneeLine1\":\"151 NW 37TH AVE, DOUGLAS RD.\",\"consigneeLine2\":\"MIAMI, FL  33125  US\",\"consigneeLine3\":\"\",\"consigneeLine4\":\"\",\"city\":\"\",\"state\":\"\",\"zipCode\":\"\",\"countryCode\":\"\",\"contactName\":\"\",\"commNumberQualifier\":\"\",\"commNumber\":\"\",\"filler\":\"\"}}"
+  }
+}
