@@ -1,0 +1,28 @@
+{
+  "userId": "68007b16-82d9-4b0d-8707-be48505b84aa",
+  "timestamp": "2023-11-10T15:48:27.414951358Z",
+  "verified": true,
+  "visible": true,
+  "vessel": {
+    "id": 42
+  },
+  "origin": null,
+  "destination": {
+    "id": 86
+  },
+  "shipper": null,
+  "consignee": null,
+  "notificationParty": null,
+  "product": {
+    "id": 23,
+    "rawProduct": {
+      "string": "raw product description"
+    },
+    "quantities": [
+      {
+        "value": "50.0",
+        "unit": "BBL"
+      }
+    ]
+  }
+}
