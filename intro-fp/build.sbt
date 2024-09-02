@@ -10,7 +10,7 @@ val versions = new {
 
 lazy val root = (project in file("."))
   .settings(
-    name := "introduction-to-scala-basics",
+    name := "intro-fp",
     libraryDependencies ++= Seq(
       
       
