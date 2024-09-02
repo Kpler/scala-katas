@@ -25,7 +25,7 @@ Here is the list of the available Scala Katas
 
 
 ## Scala 2 'implicits' vs Scala 3 'given' and 'using'
-- Level: Beginner
+- Level: Intermediate
 - Directory: [implicits-and-given](https://github.com/Kpler/scala-katas/tree/main/implicits-and-given)
 - Presentation: [slides](https://docs.google.com/presentation/d/11FVilqngvZLwvnp1S7OY3GQjyiluUgXNfMLFPH95ahE/edit#slide=id.g25deeb73fd2_0_20)
 
