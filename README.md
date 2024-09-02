@@ -23,6 +23,17 @@ Here is the list of the available Scala Katas
 - relationship between for comprehension and map/flatMap
 - Examples: Lists, Option and Futures
 
+
+## Scala 2 'implicits' vs Scala 3 'given' and 'using'
+- Level: Beginner
+- Directory: [implicits-and-given](https://github.com/Kpler/scala-katas/tree/main/implicits-and-given)
+- Presentation: [slides](https://docs.google.com/presentation/d/11FVilqngvZLwvnp1S7OY3GQjyiluUgXNfMLFPH95ahE/edit#slide=id.g25deeb73fd2_0_20)
+
+### Content
+- Scala 2 implicits
+- Scala 3 'using' and 'given'
+- Scala 3 'extension'
+
 # Run with GitHub codespace
 
 [Create a codespace](https://github.com/codespaces/new?machine=basicLinux32gb&repo=508246800&ref=codespace&location=WestEurope&devcontainer_path=.devcontainer%2Fdevcontainer.json)
