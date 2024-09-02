@@ -44,6 +44,16 @@ Here is the list of the available Scala Katas
 - Presentation of the 'type class' pattern
 - Implement a 'CartesianProduct' typeclass 
 
+## map and contramap
+- Level: Intermediate/Advanced
+- Directory: [map-contramap](https://github.com/Kpler/scala-katas/tree/main/map-contramap)
+- Presentation: [slides](https://docs.google.com/presentation/d/1lU9t7Wy9dTqtDP2ItHLJHJsriiH7qDpwiYki7DGJXg0/edit#slide=id.p)
+
+### Content
+- Variance
+- map and the Functor type class
+- contramap and the Contravariant type class
+
 # Run with GitHub codespace
 
 [Create a codespace](https://github.com/codespaces/new?machine=basicLinux32gb&repo=508246800&ref=codespace&location=WestEurope&devcontainer_path=.devcontainer%2Fdevcontainer.json)
