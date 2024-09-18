@@ -71,14 +71,14 @@ object Bomberman {
       val destroyed = bombLocations.flatMap(this.neighbors)
 
       @tailrec
-      def internal(b: List[Point], newContent: List[StringBuffer]): List[String] = b match {
-        case Nil => newContent.map(_.toString)
+      def internal(b: List[Point], newContent: List[String]): List[String] = b match {
+        case Nil => newContent
         case destroyed :: rest =>
-          val line = newContent(destroyed.y).insert(destroyed.x, '.')
+          val line = newContent(destroyed.y).updated(destroyed.x, '.')
           internal(rest, newContent.updated(destroyed.y, line))
       }
 
-      val updatedContent = internal(destroyed, content.map(StringBuffer(_)))
+      val updatedContent = internal(destroyed, content)
       Board(this.width, this.height, updatedContent)
     }
 
