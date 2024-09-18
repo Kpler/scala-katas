@@ -68,26 +68,6 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
     duplicateElements(List(1, 2, 3, 4)) shouldBe List(1, 1, 2, 2, 3, 3, 4, 4)
   }
 
-  /** Given an ordered list l of integers, return a new list that contains the complete sequence from the first element of the list to the last one
-   * The function should return l if it contains 0 or 1 element
-   * Examples:
-   *  - fillHoles(List(1, 4, 9)) => List(1, 2, 3, 4, 5, 6, 7, 8, 9)
-   *  - fillHoles(List(4, 7)) => List(4, 5, 6, 7)
-   *
-   * Hints:
-   * - use 'List#sliding' and 'toList'
-   * - l(n) returns the (n-1)th element of the list l
-   * - 0 until 4 returns List(0, 1, 2, 3)
-   * - The ':+' operator appends one element at the end of a list: List(1, 2, 3) :+ 4 => List(1, 2, 3, 4)
-   *
-   * @param list - the list of integer to compute the missing sequence from
-   * @return - a new list that contains the complete sequence from the first element of the list to the last one
-   */
-  def fillHoles(list: List[Int]): List[Int] = ???
-
-  test("Exercice 5: should complete the missing sequence (hard)") {
-    fillHoles(List(1, 4, 9)) shouldBe List(1, 2, 3, 4, 5, 6, 7, 8, 9)
-  }
 
   def sumQuadraticFor(list: List[Int]): List[Int] = for {
     a <- list
@@ -103,8 +83,49 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
     sumQuadraticFor(lst) shouldBe sumQuadraticMap(lst)
   }
 
+
+  case class Point(x: Int, y: Int)
+
+  case class Board(content: List[String]) {
+
+    def getBombsForComp: List[Point] = {
+      for {
+        // it will be a list of string rows with their index
+        (row, y) <- content.zipWithIndex
+        // list of every string characters with their index
+        (columnCell, x) <- row.zipWithIndex if columnCell == 'O'
+      } yield Point(x, y)
+    }
+
+    def getBombsFlatMap: List[Point] = ???
+  }
+
+  /**
+   * Rewrite the 'getBombsForComp' above with flatMap, map, and filter
+   * Note the 'if' statement: if columnCell == 'O' that should be rewritten with a filter
+   *
+   * List(1, 2, 3, 4).filter(x => x%2 == 0) => List(2, 4)
+   */
+  test("Bonus exercise: the return of Bomberman !") {
+    val board = Board(List(
+      ".O...O..",
+      "......O.",
+      "..O....."
+    ))
+
+    val expected = List(
+      Point(1, 0), Point(5, 0),
+      Point(6, 1),
+      Point(2, 2),
+    )
+    board.getBombsForComp shouldBe expected
+
+
+  }
+
+
   /** Options in Scala serve the same feature as Optional in Python: to deal with null/None values.
-   * In Python, Optional is an union, for instance Optional[str] <=>  str | None
+   * In Python, Optional is a union, for instance Optional[str] <=>  str | None
    * In Scala, Option is the parent class of 2 subtypes:
    * - Some : which indicates the value is set
    * - None: which indicates the value is not set (same as Python)
@@ -163,14 +184,103 @@ class FlatMapSpec extends AnyFunSuite with should.Matchers {
     result shouldBe expected
   }
 
+
+  /** Given an ordered list l of integers, return a new list that contains the complete sequence from the first element of the list to the last one
+   * The function should return l if it contains 0 or 1 element
+   * Examples:
+   *  - fillHoles(List(1, 4, 9)) => List(1, 2, 3, 4, 5, 6, 7, 8, 9)
+   *  - fillHoles(List(4, 7)) => List(4, 5, 6, 7)
+   *
+   * Hints:
+   * - use List.headOption and List.lastOption
+   * - (0 to 4).toList returns List(0, 1, 2, 3, 4)
+   * - have to look to Option.getOrElse
+   *
+   * @param list - the list of integer to compute the missing sequence from
+   * @return - a new list that contains the complete sequence from the first element of the list to the last one
+   */
+  def fillHoles(list: List[Int]): List[Int] = (for {
+    head <- list.headOption
+    last <- list.lastOption
+  } yield (head to last).toList).getOrElse(list)
+
+  test("Exercice 5: should complete the missing sequence (hard)") {
+    fillHoles(List(1, 4, 9)) shouldBe List(1, 2, 3, 4, 5, 6, 7, 8, 9)
+  }
+
+
   import concurrent.ExecutionContext.Implicits.global
   import concurrent.duration.DurationInt
 
+  /** Either in Scala is some kind of extended Option
+   * If an Option is set, it is a 'Some' with the value : Some(1)
+   * If an Option is not set, it is an invariant 'None'
+   *
+   * Either takes 2 parameter types:
+   *  - The type in the case the Either is set (or rather successful for an Either)
+   *  - The type in the case the Either is not set (or unsuccessful)
+   *    Either is the parent class of 2 subtypes:
+   *    - Right: which indicates the either is successful with some value
+   *    - Left: which indicates the either is not successful, with some explication (an error message as a string for example)
+   *    You can build Options by using any of these 2 classes:
+   *    - val either[String, Int] = Right(1)
+   *    - val either[String, Int] = Left("No integer could be produced for some reason")
+   *    Like Lists and Option, Either comes with map and flatMap and thus with for comprehension
+   */
+
+
+  test("Exercise 12: What is expected ?") {
+    val result = for {
+      a <- Right(1)
+    } yield a + 1
+    val expected = ???
+    result shouldBe expected
+  }
+
+  test("Exercise 13: What is expected ?") {
+    val result = for {
+      a <- Right(1)
+      b <- Right(2)
+    } yield a + b
+    val expected = ???
+    result shouldBe expected
+  }
+
+  test("Exercise 14: What is expected ?") {
+    val eitherB: Either[String, Int] = Left("there is an error")
+    val result = for {
+      a <- Right(1)
+      b <- eitherB
+    } yield a + b
+    val expected = ???
+    result shouldBe expected
+  }
+
+  test("Exercise 15: What is expected ?") {
+    val eitherA: Either[String, Int] = Left("there is an error")
+    val result = for {
+      a <- eitherA
+      b <- Right(2)
+    } yield a + b
+    val expected = ???
+    result shouldBe expected
+  }
+
+  test("Exercise 16: What is expected ?") {
+    val eitherA: Either[String, Int] = Left("there is an error")
+    val result = for {
+      _ <- eitherA // _ => do not use the value from optA
+      b <- Right(2)
+    } yield b
+    val expected = ???
+    result shouldBe expected
+  }
+
   /** Futures in Scala represent an asynchronous computation.
-   * It runs a on different thread than the calling thread:
+   * It runs on a different thread than the calling thread:
    *
    * val futA = Future("Some async computation")
-   * val b = ...   // this line is reached no matter futA is completed or not
+   * val b = ...   // this line is reached and executed; no matter futA is completed or not
    *
    * Some callback function can be registered to handle the result of the future with 'onComplete'
    * Like with Lists and Option, Future can be chained with for comprehensions
