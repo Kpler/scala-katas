@@ -32,10 +32,37 @@ object ScalaTry {
     }
   }
 
-  def parseName(payload: Obj, key: String): Try[String] = ???
+  def parseName(payload: Obj, key: String): Try[String] = {
+    payload.value.get(key) match {
+      case None => Failure(SubscriberValidationException(MissingKey(key)))
+      case Some(name) =>
+        name.strOpt match {
+          case None => Failure(SubscriberValidationException(InvalidType(key, classOf[String])))
+          case Some(str) if str.length >= 3 && str.length <= 60 => Success(str)
+          case Some(_) => Failure(SubscriberValidationException(LengthOutOfRange(key, 3, 60)))
+        }
+    }
+  }
 
-  def parseAge(payload: Obj): Try[Int] = ???
+  def parseAge(payload: Obj): Try[Int] = {
+    payload.value.get("age") match {
+      case None => Failure(SubscriberValidationException(MissingKey("age")))
+      case Some(age) =>
+        age.numOpt match {
+          case None => Failure(SubscriberValidationException(InvalidType("age", classOf[Int])))
+          case Some(db: Double) =>
+            val ageAsInt = db.toInt
+            if (ageAsInt >= 21 && ageAsInt <= 65) Success(ageAsInt)
+            else Failure(SubscriberValidationException(ValueOutOfRange("age", 21, 65)))
+        }
+    }
+  }
 
-  def tryValidate(payload: Obj): Try[Subscriber] = ???
+  def tryValidate(payload: Obj): Try[Subscriber] = for {
+    id <- parseId(payload)
+    firstName <- parseName(payload, "firstName")
+    lastName <- parseName(payload, "lastName")
+    age <- parseAge(payload)
+  } yield Subscriber(id, firstName, lastName, age)
 
 }
