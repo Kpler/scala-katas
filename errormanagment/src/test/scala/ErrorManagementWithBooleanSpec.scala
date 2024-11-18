@@ -7,15 +7,15 @@ class ErrorManagementWithBooleanSpec extends AnyFlatSpec with Matchers {
   case object Open extends AccountStatus
   case object Closed extends AccountStatus
 
-  case class BankAccount(availableMoney : Double, status : AccountStatus)
+  case class BankAccount(availableMoney: Double, status: AccountStatus)
   def withDraw(amount: Double, bankAccount: BankAccount): Boolean = {
     if (amount < 0) {
       false
     } else if (amount > bankAccount.availableMoney) {
       false
-    }else if (bankAccount.status == Closed){
+    } else if (bankAccount.status == Closed) {
       false
-    }  else {
+    } else {
       true
     }
   }

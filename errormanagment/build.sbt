@@ -27,7 +27,8 @@ version := "1.0"
 
 libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.4.0"
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % Test
-libraryDependencies +="org.typelevel" %% "cats-core" % "2.12.0"
+libraryDependencies += "org.typelevel" %% "cats-core" % "2.12.0"
+libraryDependencies += "com.lihaoyi" %% "ujson" % "4.0.2"
 
 
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,

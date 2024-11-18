@@ -1,19 +1,18 @@
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-/**
- * Referential transparency is a property of programming language expressions
- * which means that an expression can be replaced by
- * its value without changing the program's behavior.
- *
- * A pure function need Referential transparency
- */
+/** Referential transparency is a property of programming language expressions
+  * which means that an expression can be replaced by
+  * its value without changing the program's behavior.
+  *
+  * A pure function need Referential transparency
+  */
 class ErrorManagementExceptionSpec extends AnyFlatSpec with Matchers {
 
   trait AccountStatus
   case object Open extends AccountStatus
   case object Closed extends AccountStatus
-  case class BankAccount(availableMoney : Double, status : AccountStatus)
+  case class BankAccount(availableMoney: Double, status: AccountStatus)
 
   class NegativeAmountException extends RuntimeException
   class InsufficientFundsException extends RuntimeException
@@ -24,10 +23,10 @@ class ErrorManagementExceptionSpec extends AnyFlatSpec with Matchers {
       throw new NegativeAmountException
     } else if (amount > bankAccount.availableMoney) {
       throw new InsufficientFundsException
-    }else if (bankAccount.status == Closed){
+    } else if (bankAccount.status == Closed) {
       throw new AccountClosedException
     }
-    bankAccount.copy(availableMoney = bankAccount.availableMoney-amount)
+    bankAccount.copy(availableMoney = bankAccount.availableMoney - amount)
   }
 
   "Withdrawing more money than the bank account holds" should "throw a InsufficientFundsException exception" in {

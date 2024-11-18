@@ -10,7 +10,7 @@ class ErrorManagementWithEitherTraitSpec extends AnyFlatSpec with Matchers {
   case object Closed extends AccountStatus
 
   case class BankAccount(availableMoney: Double, status: AccountStatus)
-  trait OperationError 
+  trait OperationError
   case object AmountShouldPositive extends OperationError
   case object AmountShouldLowerThanAvailableMoney extends OperationError
   case object AccountShouldBeOpen extends OperationError
@@ -49,13 +49,13 @@ class ErrorManagementWithEitherTraitSpec extends AnyFlatSpec with Matchers {
   "(using flatMap) multiple cash withdrawals  must work with an adequately funded account" should "return true" in {
     val bankAccountWithMoney = BankAccount(10_000, Open)
 
-    val bankAccountOneWithdrawOrError= withDraw(100, bankAccountWithMoney)
+    val bankAccountOneWithdrawOrError = withDraw(100, bankAccountWithMoney)
     bankAccountOneWithdrawOrError shouldBe Right(BankAccount(9_900, Open))
 
-    val bankAccountWithTwoWithdraw= bankAccountOneWithdrawOrError.flatMap(bankAccount => withDraw(100, bankAccount))
+    val bankAccountWithTwoWithdraw = bankAccountOneWithdrawOrError.flatMap(bankAccount => withDraw(100, bankAccount))
     bankAccountWithTwoWithdraw shouldBe Right(BankAccount(9_800, Open))
 
-    val bankAccountWithThreeWithdraw= bankAccountWithTwoWithdraw.flatMap(bankAccount => withDraw(100, bankAccount))
+    val bankAccountWithThreeWithdraw = bankAccountWithTwoWithdraw.flatMap(bankAccount => withDraw(100, bankAccount))
     bankAccountWithThreeWithdraw shouldBe Right(BankAccount(9_700, Open))
   }
 
