@@ -1,7 +1,7 @@
 default_stages: [commit]
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
+    rev: 3298ddab3c13dd77d6ce1fc0baf97691430d84b0 # v4.3.0
     hooks:
       - id: check-json
       - id: check-merge-conflict
@@ -18,7 +18,7 @@ repos:
       - id: trailing-whitespace
         stages: [commit]
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.2.0
+    rev: f317b8d4fd69328499230dc009d0e55a258773cf # v1.2.0
     hooks:
       - id: forbid-crlf
       - id: remove-crlf
