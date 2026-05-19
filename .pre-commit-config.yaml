@@ -18,7 +18,7 @@ repos:
       - id: trailing-whitespace
         stages: [commit]
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: f317b8d4fd69328499230dc009d0e55a258773cf # v1.2.0
+    rev: ad1b27d73581aa16cca06fc4a0761fc563ffe8e8 # v1.5.6
     hooks:
       - id: forbid-crlf
       - id: remove-crlf
