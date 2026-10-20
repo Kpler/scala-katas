@@ -1,4 +1,4 @@
-def my_sum(a: int, b: int) -> int:
+def my_sum(a, b):
     return a + b
 
 
@@ -9,32 +9,18 @@ def distribution(my_lst: list[int]) -> dict[int, int]:
     return to_return
 
 
-def insert_sort(my_lst: list[int]) -> None:
-    for i in range(1, len(my_lst)):
-        j = i
-        while j > 0 and my_lst[j - 1] > my_lst[j]:
-            temp = my_lst[j]
-            my_lst[j] = my_lst[j - 1]
-            my_lst[j - 1] = temp
-            j = j - 1
+if __name__ == "__main__":
+    print(my_sum(4, 5))
 
-
-if __name__ == '__main__':
-    print(my_sum(2, 3))
+    a = 2
+    print(a)
 
     a = 3
     print(a)
-    a = 2
 
-    lst = [1, 2, 3, 4]
-    print(lst)
-    print(lst[1])
-    lst[1] = 5
+    lst = [i for i in range(10)]
     print(lst)
 
-    toDistrib = [5, 2, 3, 2, 3, 5, 5, 3, 3, 6]
-    print(distribution(toDistrib))
-    insert_sort(toDistrib)
-    print(toDistrib)
-    list_of_tuples = [(i, j) for i in range(5) for j in range(6)]
-    print(list_of_tuples)
+    lst[0] = 6
+    print(distribution(lst))
+
