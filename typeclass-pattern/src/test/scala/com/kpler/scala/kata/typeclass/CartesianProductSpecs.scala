@@ -1,16 +1,16 @@
-package com.kpler.scala.kata.monocle
+package com.kpler.scala.kata.typeclass
 
 import cats.FlatMap
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should
 
-class TypeclassSpecs extends AnyFunSuite with should.Matchers {
+class CartesianProductSpecs extends AnyFunSuite with should.Matchers {
 
   /**
    * Write a function that computes the cartesian product of 2 options
    * If both options are not empty, it should return a new option with a tuple of the 2 values
    * None in any other case
-   * You can user either pattern matching or for comprehension
+   * You can use either pattern matching or for comprehension
    */
   def cartesianProductOption[A, B](optA: Option[A], optB: Option[B]): Option[(A, B)] = ???
 

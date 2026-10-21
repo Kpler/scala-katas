@@ -1,6 +1,6 @@
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "3.3.1"
+ThisBuild / scalaVersion := "3.8.4"
 
 ThisBuild / scalafmtOnCompile := true
 
@@ -18,12 +18,12 @@ lazy val root = (project in file("."))
     name := "typeclass-pattern",
     libraryDependencies ++= Seq(
       // cats effect
-      "org.typelevel" %% "cats-core" % "2.10.0",
+      "org.typelevel" %% "cats-core" % "2.13.0",
 
 
       // Test
-      "org.scalactic" %% "scalactic" % "3.2.17" % Test,
-      "org.scalatest" %% "scalatest" % "3.2.17" % Test,
+      "org.scalactic" %% "scalactic" % "3.2.20" % Test,
+      "org.scalatest" %% "scalatest" % "3.2.20" % Test,
 
     ),
   )
